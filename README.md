@@ -24,13 +24,15 @@ App Android para seguimiento de habitos dificiles de abandonar, con contador de 
 - Fase 1 completada: configuracion base del proyecto.
 - Fase 2 completada: capa domain.
 - Fase 3 completada: persistencia local con Room.
+- Fase 4 completada: inyeccion de dependencias con Koin.
+- Fase 5 completada: navegacion y UI base.
 
 ## Funcionalidades implementadas
 - Documentacion base del proyecto.
+- Pantallas Compose base y navegacion.
 
 ## Funcionalidades pendientes
-- Configuracion base del proyecto (dependencias y estructura).
-- Capa domain.
-- Persistencia local con Room.
-- Koin, UI, MVI, Firebase, notificaciones y localizacion.
-
+- MVVM/MVI por pantalla.
+- Firebase Remote Config, FCM y App Distribution.
+- Notificaciones locales y localizacion.
+- Logica de negocio y funcionalidades finales.

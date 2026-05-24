@@ -1,3 +1,47 @@
 <resources>
     <string name="app_name">SoberPath</string>
+    <string name="action_back">Back</string>
+
+    <string name="onboarding_title">Create your habit</string>
+    <string name="onboarding_habit_name_label">Habit name</string>
+    <string name="onboarding_category_label">Category</string>
+    <string name="onboarding_start_date_label">Start date</string>
+    <string name="onboarding_daily_cost_label">Daily cost</string>
+    <string name="onboarding_currency_label">Currency</string>
+    <string name="onboarding_create_button">Create habit</string>
+
+    <string name="home_title">Home</string>
+    <string name="home_time_since_last_relapse">Time since last relapse</string>
+    <string name="home_time_placeholder">00d 00h 00m</string>
+    <string name="home_savings_label">Estimated savings</string>
+    <string name="home_savings_placeholder">$0.00</string>
+    <string name="home_motivational_message">Keep going. One day at a time.</string>
+    <string name="home_daily_check_in">Daily check-in</string>
+    <string name="home_register_relapse">Register relapse</string>
+    <string name="home_go_to_motivation">Motivation</string>
+    <string name="home_go_to_milestones">Milestones</string>
+    <string name="home_go_to_settings">Settings</string>
+
+    <string name="daily_check_in_title">Daily check-in</string>
+    <string name="daily_check_in_mood_label">Mood</string>
+    <string name="daily_check_in_craving_label">Craving level</string>
+    <string name="daily_check_in_craving_value">Level %1$d</string>
+    <string name="daily_check_in_note_label">Daily note</string>
+    <string name="daily_check_in_pledge_label">I commit to my daily pledge</string>
+    <string name="daily_check_in_save_button">Save check-in</string>
+
+    <string name="motivation_title">Motivation</string>
+    <string name="motivation_empty">No reasons yet. Add your first one.</string>
+    <string name="motivation_add_hint">Add a reason</string>
+    <string name="motivation_add_button">Add reason</string>
+
+    <string name="milestones_title">Milestones</string>
+    <string name="milestones_empty">No milestones loaded yet.</string>
+    <string name="milestones_days_required">%1$d days</string>
+
+    <string name="settings_title">Settings</string>
+    <string name="settings_daily_reminder">Daily reminder</string>
+    <string name="settings_reminder_time">Reminder time</string>
+    <string name="settings_language">Language (managed by system)</string>
+    <string name="settings_app_version">App version: %1$s</string>
 </resources>
