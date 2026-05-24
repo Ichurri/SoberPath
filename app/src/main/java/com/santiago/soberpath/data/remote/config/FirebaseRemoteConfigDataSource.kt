@@ -29,6 +29,10 @@ class FirebaseRemoteConfigDataSource(
         }
     }
 
+    suspend fun refresh(): Boolean {
+        return fetchAndActivate()
+    }
+
     fun getConfig(): AppConfig {
         val minVersion = remoteConfig.getString(KEY_MIN_SUPPORTED_VERSION).toIntOrNull() ?: 1
         return AppConfig(

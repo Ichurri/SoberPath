@@ -9,6 +9,8 @@
     <string name="message_no_active_habit">Create a habit first.</string>
     <string name="message_reason_added">Reason added.</string>
     <string name="message_relapse_not_ready">Relapse flow will be added soon.</string>
+    <string name="message_remote_config_updated">Remote config updated.</string>
+    <string name="message_remote_config_failed">Remote config update failed.</string>
 
     <string name="onboarding_title">Create your habit</string>
     <string name="onboarding_habit_name_label">Habit name</string>
@@ -56,4 +58,6 @@
     <string name="settings_reminder_time">Reminder time</string>
     <string name="settings_language">Language (managed by system)</string>
     <string name="settings_app_version">App version: %1$s</string>
+    <string name="settings_remote_config_title">Remote config (debug)</string>
+    <string name="settings_remote_config_button">Refresh remote config</string>
 </resources>

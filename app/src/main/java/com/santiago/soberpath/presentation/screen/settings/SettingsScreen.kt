@@ -29,6 +29,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.santiago.soberpath.BuildConfig
 import com.santiago.soberpath.R
 import com.santiago.soberpath.presentation.util.asString
 import org.koin.androidx.compose.koinViewModel
@@ -101,6 +102,20 @@ fun SettingsScreen(
             Text(text = stringResource(R.string.settings_language))
             Spacer(modifier = Modifier.height(12.dp))
             Text(text = stringResource(R.string.settings_app_version, state.appVersion))
+            if (BuildConfig.DEBUG) {
+                Spacer(modifier = Modifier.height(24.dp))
+                Text(text = stringResource(R.string.settings_remote_config_title))
+                Spacer(modifier = Modifier.height(12.dp))
+                androidx.compose.material3.Button(
+                    onClick = {
+                        viewModel.onIntent(SettingsContract.UiIntent.RefreshRemoteConfig)
+                    },
+                    enabled = !state.isRefreshing,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(stringResource(R.string.settings_remote_config_button))
+                }
+            }
         }
     }
 }

@@ -8,6 +8,7 @@ import com.santiago.soberpath.domain.usecase.GetMilestonesUseCase
 import com.santiago.soberpath.domain.usecase.GetMotivationReasonsUseCase
 import com.santiago.soberpath.domain.usecase.GetRemoteConfigUseCase
 import com.santiago.soberpath.domain.usecase.GetSobrietyProgressUseCase
+import com.santiago.soberpath.domain.usecase.RefreshRemoteConfigUseCase
 import com.santiago.soberpath.domain.usecase.RegisterRelapseUseCase
 import com.santiago.soberpath.domain.usecase.SaveDailyCheckInUseCase
 import org.koin.dsl.module
@@ -24,6 +25,7 @@ object UseCaseModule {
         factory { GetMotivationReasonsUseCase(get()) }
         factory { GetMilestonesUseCase(get()) }
         factory { GetRemoteConfigUseCase(get()) }
+        factory { RefreshRemoteConfigUseCase(get()) }
     }
 }
 

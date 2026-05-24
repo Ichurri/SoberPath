@@ -5,5 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface ConfigRepository {
     fun getRemoteConfig(): Flow<AppConfig>
+    suspend fun refreshRemoteConfig(): Boolean
 }
 

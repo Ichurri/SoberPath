@@ -19,5 +19,10 @@ class ConfigRepositoryImpl(
             emit(remoteConfigDataSource.getConfig())
         }
     }
+
+    override suspend fun refreshRemoteConfig(): Boolean {
+        remoteConfigDataSource.applyDefaults()
+        return runCatching { remoteConfigDataSource.refresh() }.getOrDefault(false)
+    }
 }
 
