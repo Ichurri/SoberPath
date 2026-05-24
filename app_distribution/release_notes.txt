@@ -1,0 +1,3 @@
+- Build interna para pruebas de App Distribution.
+- Incluye configuracion base, Remote Config y notificaciones.
+

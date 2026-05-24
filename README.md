@@ -14,6 +14,10 @@ App Android para seguimiento de habitos dificiles de abandonar, con contador de 
 2. Sincronizar Gradle.
 3. Ejecutar en un emulador o dispositivo.
 
+## App Distribution (recomendado)
+- Se usa Firebase CLI para distribuir builds internas.
+- Ver `docs/09_firebase_app_distribution.md`.
+
 ## Arquitectura
 - Clean Architecture: data, domain, presentation.
 - MVVM + MVI con StateFlow, UiIntent y UiEffect.
@@ -29,6 +33,7 @@ App Android para seguimiento de habitos dificiles de abandonar, con contador de 
 - Fase 6 completada: MVVM + MVI por pantalla.
 - Fase 7 completada: Firebase Remote Config.
 - Fase 8 completada: notificaciones locales y FCM.
+- Fase 9 completada: Firebase App Distribution.
 
 ## Funcionalidades implementadas
 - Documentacion base del proyecto.
@@ -38,6 +43,6 @@ App Android para seguimiento de habitos dificiles de abandonar, con contador de 
 - Recordatorios locales y soporte basico FCM.
 
 ## Funcionalidades pendientes
-- App Distribution.
+- Localizacion y logica de negocio final.
 - Notificaciones locales y localizacion.
 - Logica de negocio y funcionalidades finales.

@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.google.gms.google.services)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.firebase.app.distribution) apply false
 }
 
 android {
@@ -39,6 +40,15 @@ android {
     buildFeatures {
         compose = true
         buildConfig = true
+    }
+}
+
+if (providers.gradleProperty("enableAppDistribution").orNull == "true") {
+    apply(plugin = "com.google.firebase.appdistribution")
+    extensions.configure<com.google.firebase.appdistribution.gradle.AppDistributionExtension> {
+        artifactType = "APK"
+        releaseNotesFile = "app_distribution/release_notes.txt"
+        groups = "internal-testers"
     }
 }
 
