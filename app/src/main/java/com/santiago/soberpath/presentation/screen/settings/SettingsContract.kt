@@ -11,14 +11,16 @@ object SettingsContract {
     )
 
     sealed interface UiIntent {
-        data class UpdateReminderEnabled(val value: Boolean) : UiIntent
         data class UpdateReminderTime(val value: String) : UiIntent
+        data class ToggleReminder(val value: Boolean) : UiIntent
+        data class NotificationPermissionResult(val granted: Boolean) : UiIntent
         object RefreshRemoteConfig : UiIntent
         object Back : UiIntent
     }
 
     sealed interface UiEffect {
         object NavigateBack : UiEffect
+        object RequestNotificationPermission : UiEffect
         data class ShowMessage(val message: UiText) : UiEffect
     }
 }

@@ -11,6 +11,9 @@
     <string name="message_relapse_not_ready">Relapse flow will be added soon.</string>
     <string name="message_remote_config_updated">Remote config updated.</string>
     <string name="message_remote_config_failed">Remote config update failed.</string>
+    <string name="message_notification_permission_required">Notification permission required.</string>
+    <string name="message_notification_permission_denied">Permission denied. Reminders disabled.</string>
+    <string name="message_invalid_time">Invalid time. Use HH:mm.</string>
 
     <string name="onboarding_title">Create your habit</string>
     <string name="onboarding_habit_name_label">Habit name</string>
@@ -60,4 +63,10 @@
     <string name="settings_app_version">App version: %1$s</string>
     <string name="settings_remote_config_title">Remote config (debug)</string>
     <string name="settings_remote_config_button">Refresh remote config</string>
+
+    <string name="notification_channel_name">Daily reminders</string>
+    <string name="notification_channel_description">Daily reminder notifications</string>
+    <string name="notification_daily_title">Daily check-in</string>
+    <string name="notification_daily_body">Take a moment to record your check-in.</string>
+    <string name="notification_push_default_title">SoberPath update</string>
 </resources>

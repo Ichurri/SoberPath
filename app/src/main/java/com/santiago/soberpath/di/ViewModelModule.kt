@@ -16,6 +16,6 @@ object ViewModelModule {
         viewModel { DailyCheckInViewModel(get(), get()) }
         viewModel { MotivationViewModel(get(), get(), get()) }
         viewModel { MilestonesViewModel(get(), get()) }
-        viewModel { SettingsViewModel(get()) }
+        viewModel { SettingsViewModel(get(), get()) }
     }
 }

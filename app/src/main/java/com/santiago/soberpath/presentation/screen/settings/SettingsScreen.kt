@@ -28,6 +28,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
+import android.os.Build
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.santiago.soberpath.BuildConfig
 import com.santiago.soberpath.R
@@ -43,11 +47,21 @@ fun SettingsScreen(
     val state by viewModel.state.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
     val context = LocalContext.current
+    val permissionLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { granted ->
+        viewModel.onIntent(SettingsContract.UiIntent.NotificationPermissionResult(granted))
+    }
 
     LaunchedEffect(Unit) {
         viewModel.effect.collect { effect ->
             when (effect) {
                 SettingsContract.UiEffect.NavigateBack -> onBack()
+                SettingsContract.UiEffect.RequestNotificationPermission -> {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        permissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+                    }
+                }
                 is SettingsContract.UiEffect.ShowMessage ->
                     snackbarHostState.showSnackbar(effect.message.asString(context))
             }
@@ -85,7 +99,7 @@ fun SettingsScreen(
                 Switch(
                     checked = state.reminderEnabled,
                     onCheckedChange = {
-                        viewModel.onIntent(SettingsContract.UiIntent.UpdateReminderEnabled(it))
+                        viewModel.onIntent(SettingsContract.UiIntent.ToggleReminder(it))
                     }
                 )
             }
