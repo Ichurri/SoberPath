@@ -3,180 +3,75 @@
   <component name="CopilotDiffPersistence">
     <option name="pendingDiffs">
       <map>
-        <entry key="$PROJECT_DIR$/README.md">
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/data/local/SoberPathDatabase.kt">
           <value>
             <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/README.md" />
-              <option name="originalContent" value="# SoberPath&#10;&#10;## Descripcion corta&#10;App Android para seguimiento de habitos dificiles de abandonar, con contador de tiempo, check-ins diarios, motivaciones y recordatorios.&#10;&#10;## Requisitos tecnicos&#10;- Android Studio (version compatible con el proyecto).&#10;- Android SDK instalado.&#10;- Kotlin.&#10;- Gradle (wrapper incluido).&#10;&#10;## Como ejecutar el proyecto&#10;1. Abrir el proyecto en Android Studio.&#10;2. Sincronizar Gradle.&#10;3. Ejecutar en un emulador o dispositivo.&#10;&#10;## Arquitectura&#10;- Clean Architecture: data, domain, presentation.&#10;- MVVM + MVI con StateFlow, UiIntent y UiEffect.&#10;- Inyeccion de dependencias con Koin.&#10;&#10;## Estado actual del desarrollo&#10;- Fase 0 completada: plan y documentacion inicial.&#10;- Fase 1 completada: configuracion base del proyecto.&#10;&#10;## Funcionalidades implementadas&#10;- Documentacion base del proyecto.&#10;&#10;## Funcionalidades pendientes&#10;- Configuracion base del proyecto (dependencias y estructura).&#10;- Capa domain.&#10;- Persistencia local con Room.&#10;- Koin, UI, MVI, Firebase, notificaciones y localizacion.&#10;&#10;" />
-              <option name="updatedContent" value="# SoberPath&#10;&#10;## Descripcion corta&#10;App Android para seguimiento de habitos dificiles de abandonar, con contador de tiempo, check-ins diarios, motivaciones y recordatorios.&#10;&#10;## Requisitos tecnicos&#10;- Android Studio (version compatible con el proyecto).&#10;- Android SDK instalado.&#10;- Kotlin.&#10;- Gradle (wrapper incluido).&#10;&#10;## Como ejecutar el proyecto&#10;1. Abrir el proyecto en Android Studio.&#10;2. Sincronizar Gradle.&#10;3. Ejecutar en un emulador o dispositivo.&#10;&#10;## Arquitectura&#10;- Clean Architecture: data, domain, presentation.&#10;- MVVM + MVI con StateFlow, UiIntent y UiEffect.&#10;- Inyeccion de dependencias con Koin.&#10;&#10;## Estado actual del desarrollo&#10;- Fase 0 completada: plan y documentacion inicial.&#10;- Fase 1 completada: configuracion base del proyecto.&#10;- Fase 2 completada: capa domain.&#10;&#10;## Funcionalidades implementadas&#10;- Documentacion base del proyecto.&#10;&#10;## Funcionalidades pendientes&#10;- Configuracion base del proyecto (dependencias y estructura).&#10;- Capa domain.&#10;- Persistencia local con Room.&#10;- Koin, UI, MVI, Firebase, notificaciones y localizacion.&#10;&#10;" />
+              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/data/local/SoberPathDatabase.kt" />
+              <option name="updatedContent" value="package com.santiago.soberpath.data.local&#10;&#10;import android.content.Context&#10;import androidx.room.Database&#10;import androidx.room.Room&#10;import androidx.room.RoomDatabase&#10;import androidx.sqlite.db.SupportSQLiteDatabase&#10;import com.santiago.soberpath.data.local.dao.DailyCheckInDao&#10;import com.santiago.soberpath.data.local.dao.HabitDao&#10;import com.santiago.soberpath.data.local.dao.MilestoneDao&#10;import com.santiago.soberpath.data.local.dao.MotivationReasonDao&#10;import com.santiago.soberpath.data.local.entity.DailyCheckInEntity&#10;import com.santiago.soberpath.data.local.entity.HabitEntity&#10;import com.santiago.soberpath.data.local.entity.MilestoneEntity&#10;import com.santiago.soberpath.data.local.entity.MotivationReasonEntity&#10;&#10;@Database(&#10;    entities = [&#10;        HabitEntity::class,&#10;        DailyCheckInEntity::class,&#10;        MotivationReasonEntity::class,&#10;        MilestoneEntity::class&#10;    ],&#10;    version = 1,&#10;    exportSchema = false&#10;)&#10;abstract class SoberPathDatabase : RoomDatabase() {&#10;    abstract fun habitDao(): HabitDao&#10;    abstract fun dailyCheckInDao(): DailyCheckInDao&#10;    abstract fun motivationReasonDao(): MotivationReasonDao&#10;    abstract fun milestoneDao(): MilestoneDao&#10;&#10;    companion object {&#10;        const val DATABASE_NAME = &quot;soberpath.db&quot;&#10;&#10;        fun build(context: Context): SoberPathDatabase {&#10;            return Room.databaseBuilder(&#10;                context,&#10;                SoberPathDatabase::class.java,&#10;                DATABASE_NAME&#10;            ).addCallback(MilestoneSeedCallback()).build()&#10;        }&#10;    }&#10;}&#10;&#10;private class MilestoneSeedCallback : RoomDatabase.Callback() {&#10;    override fun onCreate(db: SupportSQLiteDatabase) {&#10;        super.onCreate(db)&#10;        db.execSQL(&quot;INSERT INTO milestones (id, title, daysRequired, achieved) VALUES ('ms_1', '1 dia', 1, 0)&quot;)&#10;        db.execSQL(&quot;INSERT INTO milestones (id, title, daysRequired, achieved) VALUES ('ms_3', '3 dias', 3, 0)&quot;)&#10;        db.execSQL(&quot;INSERT INTO milestones (id, title, daysRequired, achieved) VALUES ('ms_7', '7 dias', 7, 0)&quot;)&#10;        db.execSQL(&quot;INSERT INTO milestones (id, title, daysRequired, achieved) VALUES ('ms_14', '14 dias', 14, 0)&quot;)&#10;        db.execSQL(&quot;INSERT INTO milestones (id, title, daysRequired, achieved) VALUES ('ms_30', '30 dias', 30, 0)&quot;)&#10;        db.execSQL(&quot;INSERT INTO milestones (id, title, daysRequired, achieved) VALUES ('ms_60', '60 dias', 60, 0)&quot;)&#10;        db.execSQL(&quot;INSERT INTO milestones (id, title, daysRequired, achieved) VALUES ('ms_90', '90 dias', 90, 0)&quot;)&#10;    }&#10;}&#10;" />
             </PendingDiffInfo>
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/model/AppConfig.kt">
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/data/local/dao/DailyCheckInDao.kt">
           <value>
             <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/model/AppConfig.kt" />
-              <option name="updatedContent" value="package com.santiago.soberpath.domain.model&#10;&#10;// App configuration from local defaults and Remote Config.&#10;data class AppConfig(&#10;    val dailyReminderEnabled: Boolean,&#10;    val dailyReminderHour: Int,&#10;    val remoteMessage: String,&#10;    val emergencyTipsEnabled: Boolean,&#10;    val minSupportedVersion: Int&#10;)&#10;" />
+              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/data/local/dao/DailyCheckInDao.kt" />
+              <option name="updatedContent" value="package com.santiago.soberpath.data.local.dao&#10;&#10;import androidx.room.Dao&#10;import androidx.room.Insert&#10;import androidx.room.OnConflictStrategy&#10;import androidx.room.Query&#10;import com.santiago.soberpath.data.local.entity.DailyCheckInEntity&#10;import kotlinx.coroutines.flow.Flow&#10;&#10;@Dao&#10;interface DailyCheckInDao {&#10;    @Insert(onConflict = OnConflictStrategy.REPLACE)&#10;    suspend fun insert(checkIn: DailyCheckInEntity)&#10;&#10;    @Query(&quot;SELECT * FROM daily_check_ins WHERE habitId = :habitId ORDER BY date DESC&quot;)&#10;    fun observeByHabitId(habitId: String): Flow&lt;List&lt;DailyCheckInEntity&gt;&gt;&#10;}&#10;" />
             </PendingDiffInfo>
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/model/DailyCheckIn.kt">
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/data/local/dao/HabitDao.kt">
           <value>
             <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/model/DailyCheckIn.kt" />
-              <option name="updatedContent" value="package com.santiago.soberpath.domain.model&#10;&#10;import java.time.LocalDate&#10;&#10;// Daily pledge and emotional log.&#10;data class DailyCheckIn(&#10;    val id: String,&#10;    val habitId: String,&#10;    val date: LocalDate,&#10;    val mood: String,&#10;    val cravingLevel: Int,&#10;    val note: String?,&#10;    val completedPledge: Boolean&#10;)&#10;" />
+              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/data/local/dao/HabitDao.kt" />
+              <option name="updatedContent" value="package com.santiago.soberpath.data.local.dao&#10;&#10;import androidx.room.Dao&#10;import androidx.room.Insert&#10;import androidx.room.OnConflictStrategy&#10;import androidx.room.Query&#10;import com.santiago.soberpath.data.local.entity.HabitEntity&#10;import kotlinx.coroutines.flow.Flow&#10;&#10;@Dao&#10;interface HabitDao {&#10;    @Insert(onConflict = OnConflictStrategy.REPLACE)&#10;    suspend fun upsert(habit: HabitEntity)&#10;&#10;    @Query(&quot;SELECT * FROM habits WHERE isActive = 1 LIMIT 1&quot;)&#10;    fun observeActiveHabit(): Flow&lt;HabitEntity?&gt;&#10;&#10;    @Query(&quot;SELECT * FROM habits WHERE id = :habitId LIMIT 1&quot;)&#10;    suspend fun getById(habitId: String): HabitEntity?&#10;&#10;    @Query(&quot;SELECT * FROM habits WHERE id = :habitId LIMIT 1&quot;)&#10;    fun observeById(habitId: String): Flow&lt;HabitEntity?&gt;&#10;}&#10;" />
             </PendingDiffInfo>
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/model/Habit.kt">
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/data/local/dao/MilestoneDao.kt">
           <value>
             <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/model/Habit.kt" />
-              <option name="updatedContent" value="package com.santiago.soberpath.domain.model&#10;&#10;import java.time.LocalDate&#10;&#10;// Core habit tracked by the app.&#10;data class Habit(&#10;    val id: String,&#10;    val name: String,&#10;    val category: String,&#10;    val startDate: LocalDate,&#10;    val lastRelapseDate: LocalDate,&#10;    val dailyCost: Double,&#10;    val currency: String,&#10;    val isActive: Boolean&#10;)&#10;" />
+              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/data/local/dao/MilestoneDao.kt" />
+              <option name="updatedContent" value="package com.santiago.soberpath.data.local.dao&#10;&#10;import androidx.room.Dao&#10;import androidx.room.Insert&#10;import androidx.room.OnConflictStrategy&#10;import androidx.room.Query&#10;import com.santiago.soberpath.data.local.entity.MilestoneEntity&#10;import kotlinx.coroutines.flow.Flow&#10;&#10;@Dao&#10;interface MilestoneDao {&#10;    @Insert(onConflict = OnConflictStrategy.REPLACE)&#10;    suspend fun insertAll(milestones: List&lt;MilestoneEntity&gt;)&#10;&#10;    @Query(&quot;SELECT * FROM milestones ORDER BY daysRequired ASC&quot;)&#10;    fun observeAll(): Flow&lt;List&lt;MilestoneEntity&gt;&gt;&#10;}&#10;" />
             </PendingDiffInfo>
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/model/Milestone.kt">
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/data/local/dao/MotivationReasonDao.kt">
           <value>
             <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/model/Milestone.kt" />
-              <option name="updatedContent" value="package com.santiago.soberpath.domain.model&#10;&#10;// Milestone based on days without relapse.&#10;data class Milestone(&#10;    val id: String,&#10;    val title: String,&#10;    val daysRequired: Int,&#10;    val achieved: Boolean&#10;)&#10;" />
+              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/data/local/dao/MotivationReasonDao.kt" />
+              <option name="updatedContent" value="package com.santiago.soberpath.data.local.dao&#10;&#10;import androidx.room.Dao&#10;import androidx.room.Insert&#10;import androidx.room.OnConflictStrategy&#10;import androidx.room.Query&#10;import com.santiago.soberpath.data.local.entity.MotivationReasonEntity&#10;import kotlinx.coroutines.flow.Flow&#10;&#10;@Dao&#10;interface MotivationReasonDao {&#10;    @Insert(onConflict = OnConflictStrategy.REPLACE)&#10;    suspend fun insert(reason: MotivationReasonEntity)&#10;&#10;    @Query(&quot;SELECT * FROM motivation_reasons WHERE habitId = :habitId ORDER BY createdAt DESC&quot;)&#10;    fun observeByHabitId(habitId: String): Flow&lt;List&lt;MotivationReasonEntity&gt;&gt;&#10;}&#10;" />
             </PendingDiffInfo>
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/model/MotivationReason.kt">
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/data/local/entity/DailyCheckInEntity.kt">
           <value>
             <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/model/MotivationReason.kt" />
-              <option name="updatedContent" value="package com.santiago.soberpath.domain.model&#10;&#10;import java.time.LocalDateTime&#10;&#10;// Personal motivation to stay on track.&#10;data class MotivationReason(&#10;    val id: String,&#10;    val habitId: String,&#10;    val text: String,&#10;    val createdAt: LocalDateTime&#10;)&#10;" />
+              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/data/local/entity/DailyCheckInEntity.kt" />
+              <option name="updatedContent" value="package com.santiago.soberpath.data.local.entity&#10;&#10;import androidx.room.Entity&#10;import androidx.room.Index&#10;import androidx.room.PrimaryKey&#10;&#10;@Entity(&#10;    tableName = &quot;daily_check_ins&quot;,&#10;    indices = [Index(value = [&quot;habitId&quot;])])&#10;data class DailyCheckInEntity(&#10;    @PrimaryKey val id: String,&#10;    val habitId: String,&#10;    val date: String,&#10;    val mood: String,&#10;    val cravingLevel: Int,&#10;    val note: String?,&#10;    val completedPledge: Boolean&#10;)&#10;" />
             </PendingDiffInfo>
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/model/SobrietyProgress.kt">
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/data/local/entity/HabitEntity.kt">
           <value>
             <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/model/SobrietyProgress.kt" />
-              <option name="updatedContent" value="package com.santiago.soberpath.domain.model&#10;&#10;// Snapshot of current progress since last relapse.&#10;data class SobrietyProgress(&#10;    val totalMinutesSinceRelapse: Long,&#10;    val days: Long,&#10;    val hours: Long,&#10;    val minutes: Long,&#10;    val savedAmount: Double&#10;)&#10;" />
+              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/data/local/entity/HabitEntity.kt" />
+              <option name="updatedContent" value="package com.santiago.soberpath.data.local.entity&#10;&#10;import androidx.room.Entity&#10;import androidx.room.PrimaryKey&#10;&#10;@Entity(tableName = &quot;habits&quot;)&#10;data class HabitEntity(&#10;    @PrimaryKey val id: String,&#10;    val name: String,&#10;    val category: String,&#10;    val startDate: String,&#10;    val lastRelapseDate: String,&#10;    val dailyCost: Double,&#10;    val currency: String,&#10;    val isActive: Boolean&#10;)&#10;" />
             </PendingDiffInfo>
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/repository/CheckInRepository.kt">
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/data/local/entity/MilestoneEntity.kt">
           <value>
             <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/repository/CheckInRepository.kt" />
-              <option name="updatedContent" value="package com.santiago.soberpath.domain.repository&#10;&#10;import com.santiago.soberpath.domain.model.DailyCheckIn&#10;import kotlinx.coroutines.flow.Flow&#10;&#10;interface CheckInRepository {&#10;    suspend fun saveDailyCheckIn(checkIn: DailyCheckIn): DailyCheckIn&#10;    fun getDailyCheckIns(habitId: String): Flow&lt;List&lt;DailyCheckIn&gt;&gt;&#10;}&#10;" />
+              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/data/local/entity/MilestoneEntity.kt" />
+              <option name="updatedContent" value="package com.santiago.soberpath.data.local.entity&#10;&#10;import androidx.room.Entity&#10;import androidx.room.PrimaryKey&#10;&#10;@Entity(tableName = &quot;milestones&quot;)&#10;data class MilestoneEntity(&#10;    @PrimaryKey val id: String,&#10;    val title: String,&#10;    val daysRequired: Int,&#10;    val achieved: Boolean&#10;)&#10;" />
             </PendingDiffInfo>
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/repository/ConfigRepository.kt">
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/data/local/entity/MotivationReasonEntity.kt">
           <value>
             <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/repository/ConfigRepository.kt" />
-              <option name="updatedContent" value="package com.santiago.soberpath.domain.repository&#10;&#10;import com.santiago.soberpath.domain.model.AppConfig&#10;import kotlinx.coroutines.flow.Flow&#10;&#10;interface ConfigRepository {&#10;    fun getRemoteConfig(): Flow&lt;AppConfig&gt;&#10;}&#10;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/repository/HabitRepository.kt">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/repository/HabitRepository.kt" />
-              <option name="updatedContent" value="package com.santiago.soberpath.domain.repository&#10;&#10;import com.santiago.soberpath.domain.model.Habit&#10;import com.santiago.soberpath.domain.model.Milestone&#10;import com.santiago.soberpath.domain.model.SobrietyProgress&#10;import java.time.LocalDate&#10;import kotlinx.coroutines.flow.Flow&#10;&#10;interface HabitRepository {&#10;    suspend fun createHabit(habit: Habit): Habit&#10;    fun getActiveHabit(): Flow&lt;Habit?&gt;&#10;    suspend fun registerRelapse(habitId: String, relapseDate: LocalDate): Habit?&#10;    fun getSobrietyProgress(habitId: String): Flow&lt;SobrietyProgress&gt;&#10;    fun getMilestones(habitId: String): Flow&lt;List&lt;Milestone&gt;&gt;&#10;}&#10;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/repository/MotivationRepository.kt">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/repository/MotivationRepository.kt" />
-              <option name="updatedContent" value="package com.santiago.soberpath.domain.repository&#10;&#10;import com.santiago.soberpath.domain.model.MotivationReason&#10;import kotlinx.coroutines.flow.Flow&#10;&#10;interface MotivationRepository {&#10;    suspend fun addMotivationReason(reason: MotivationReason): MotivationReason&#10;    fun getMotivationReasons(habitId: String): Flow&lt;List&lt;MotivationReason&gt;&gt;&#10;}&#10;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/usecase/AddMotivationReasonUseCase.kt">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/usecase/AddMotivationReasonUseCase.kt" />
-              <option name="updatedContent" value="package com.santiago.soberpath.domain.usecase&#10;&#10;import com.santiago.soberpath.domain.model.MotivationReason&#10;import com.santiago.soberpath.domain.repository.MotivationRepository&#10;&#10;class AddMotivationReasonUseCase(&#10;    private val motivationRepository: MotivationRepository&#10;) {&#10;    suspend operator fun invoke(reason: MotivationReason): MotivationReason {&#10;        return motivationRepository.addMotivationReason(reason)&#10;    }&#10;}&#10;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/usecase/CreateHabitUseCase.kt">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/usecase/CreateHabitUseCase.kt" />
-              <option name="updatedContent" value="package com.santiago.soberpath.domain.usecase&#10;&#10;import com.santiago.soberpath.domain.model.Habit&#10;import com.santiago.soberpath.domain.repository.HabitRepository&#10;&#10;class CreateHabitUseCase(&#10;    private val habitRepository: HabitRepository&#10;) {&#10;    suspend operator fun invoke(habit: Habit): Habit = habitRepository.createHabit(habit)&#10;}&#10;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/usecase/GetActiveHabitUseCase.kt">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/usecase/GetActiveHabitUseCase.kt" />
-              <option name="updatedContent" value="package com.santiago.soberpath.domain.usecase&#10;&#10;import com.santiago.soberpath.domain.model.Habit&#10;import com.santiago.soberpath.domain.repository.HabitRepository&#10;import kotlinx.coroutines.flow.Flow&#10;&#10;class GetActiveHabitUseCase(&#10;    private val habitRepository: HabitRepository&#10;) {&#10;    operator fun invoke(): Flow&lt;Habit?&gt; = habitRepository.getActiveHabit()&#10;}&#10;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/usecase/GetDailyCheckInsUseCase.kt">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/usecase/GetDailyCheckInsUseCase.kt" />
-              <option name="updatedContent" value="package com.santiago.soberpath.domain.usecase&#10;&#10;import com.santiago.soberpath.domain.model.DailyCheckIn&#10;import com.santiago.soberpath.domain.repository.CheckInRepository&#10;import kotlinx.coroutines.flow.Flow&#10;&#10;class GetDailyCheckInsUseCase(&#10;    private val checkInRepository: CheckInRepository&#10;) {&#10;    operator fun invoke(habitId: String): Flow&lt;List&lt;DailyCheckIn&gt;&gt; {&#10;        return checkInRepository.getDailyCheckIns(habitId)&#10;    }&#10;}&#10;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/usecase/GetMilestonesUseCase.kt">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/usecase/GetMilestonesUseCase.kt" />
-              <option name="updatedContent" value="package com.santiago.soberpath.domain.usecase&#10;&#10;import com.santiago.soberpath.domain.model.Milestone&#10;import com.santiago.soberpath.domain.repository.HabitRepository&#10;import kotlinx.coroutines.flow.Flow&#10;&#10;class GetMilestonesUseCase(&#10;    private val habitRepository: HabitRepository&#10;) {&#10;    operator fun invoke(habitId: String): Flow&lt;List&lt;Milestone&gt;&gt; {&#10;        return habitRepository.getMilestones(habitId)&#10;    }&#10;}&#10;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/usecase/GetMotivationReasonsUseCase.kt">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/usecase/GetMotivationReasonsUseCase.kt" />
-              <option name="updatedContent" value="package com.santiago.soberpath.domain.usecase&#10;&#10;import com.santiago.soberpath.domain.model.MotivationReason&#10;import com.santiago.soberpath.domain.repository.MotivationRepository&#10;import kotlinx.coroutines.flow.Flow&#10;&#10;class GetMotivationReasonsUseCase(&#10;    private val motivationRepository: MotivationRepository&#10;) {&#10;    operator fun invoke(habitId: String): Flow&lt;List&lt;MotivationReason&gt;&gt; {&#10;        return motivationRepository.getMotivationReasons(habitId)&#10;    }&#10;}&#10;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/usecase/GetRemoteConfigUseCase.kt">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/usecase/GetRemoteConfigUseCase.kt" />
-              <option name="updatedContent" value="package com.santiago.soberpath.domain.usecase&#10;&#10;import com.santiago.soberpath.domain.model.AppConfig&#10;import com.santiago.soberpath.domain.repository.ConfigRepository&#10;import kotlinx.coroutines.flow.Flow&#10;&#10;class GetRemoteConfigUseCase(&#10;    private val configRepository: ConfigRepository&#10;) {&#10;    operator fun invoke(): Flow&lt;AppConfig&gt; = configRepository.getRemoteConfig()&#10;}&#10;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/usecase/GetSobrietyProgressUseCase.kt">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/usecase/GetSobrietyProgressUseCase.kt" />
-              <option name="updatedContent" value="package com.santiago.soberpath.domain.usecase&#10;&#10;import com.santiago.soberpath.domain.model.SobrietyProgress&#10;import com.santiago.soberpath.domain.repository.HabitRepository&#10;import kotlinx.coroutines.flow.Flow&#10;&#10;class GetSobrietyProgressUseCase(&#10;    private val habitRepository: HabitRepository&#10;) {&#10;    operator fun invoke(habitId: String): Flow&lt;SobrietyProgress&gt; {&#10;        return habitRepository.getSobrietyProgress(habitId)&#10;    }&#10;}&#10;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/usecase/RegisterRelapseUseCase.kt">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/usecase/RegisterRelapseUseCase.kt" />
-              <option name="updatedContent" value="package com.santiago.soberpath.domain.usecase&#10;&#10;import com.santiago.soberpath.domain.model.Habit&#10;import com.santiago.soberpath.domain.repository.HabitRepository&#10;import java.time.LocalDate&#10;&#10;class RegisterRelapseUseCase(&#10;    private val habitRepository: HabitRepository&#10;) {&#10;    suspend operator fun invoke(habitId: String, relapseDate: LocalDate): Habit? {&#10;        return habitRepository.registerRelapse(habitId, relapseDate)&#10;    }&#10;}&#10;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/usecase/SaveDailyCheckInUseCase.kt">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/domain/usecase/SaveDailyCheckInUseCase.kt" />
-              <option name="updatedContent" value="package com.santiago.soberpath.domain.usecase&#10;&#10;import com.santiago.soberpath.domain.model.DailyCheckIn&#10;import com.santiago.soberpath.domain.repository.CheckInRepository&#10;&#10;class SaveDailyCheckInUseCase(&#10;    private val checkInRepository: CheckInRepository&#10;) {&#10;    suspend operator fun invoke(checkIn: DailyCheckIn): DailyCheckIn {&#10;        return checkInRepository.saveDailyCheckIn(checkIn)&#10;    }&#10;}&#10;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/docs/02_domain_layer.md">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/docs/02_domain_layer.md" />
-              <option name="updatedContent" value="# Fase 2 - Capa domain&#10;&#10;## Que es la capa domain&#10;La capa domain contiene la logica de negocio pura y los modelos centrales del proyecto. No depende de Android, Room, Firebase ni Compose.&#10;&#10;## Por que no depende de frameworks&#10;- Permite probar la logica en aislamiento.&#10;- Facilita el mantenimiento y la escalabilidad.&#10;- Evita el acoplamiento con detalles de infraestructura.&#10;&#10;## Modelos&#10;- Habit&#10;- DailyCheckIn&#10;- MotivationReason&#10;- Milestone&#10;- AppConfig&#10;- SobrietyProgress&#10;&#10;## Repositorios (interfaces)&#10;- HabitRepository&#10;- CheckInRepository&#10;- MotivationRepository&#10;- ConfigRepository&#10;&#10;## Casos de uso&#10;- CreateHabitUseCase&#10;- GetActiveHabitUseCase&#10;- RegisterRelapseUseCase&#10;- GetSobrietyProgressUseCase&#10;- SaveDailyCheckInUseCase&#10;- GetDailyCheckInsUseCase&#10;- AddMotivationReasonUseCase&#10;- GetMotivationReasonsUseCase&#10;- GetMilestonesUseCase&#10;- GetRemoteConfigUseCase&#10;&#10;## Como se conecta con data y presentation&#10;- data implementa los repositorios con Room y servicios remotos.&#10;- presentation usa los casos de uso desde ViewModels.&#10;- domain no conoce detalles de UI ni de persistencia.&#10;" />
+              <option name="filePath" value="$PROJECT_DIR$/app/src/main/java/com/santiago/soberpath/data/local/entity/MotivationReasonEntity.kt" />
+              <option name="updatedContent" value="package com.santiago.soberpath.data.local.entity&#10;&#10;import androidx.room.Entity&#10;import androidx.room.Index&#10;import androidx.room.PrimaryKey&#10;&#10;@Entity(&#10;    tableName = &quot;motivation_reasons&quot;,&#10;    indices = [Index(value = [&quot;habitId&quot;])])&#10;data class MotivationReasonEntity(&#10;    @PrimaryKey val id: String,&#10;    val habitId: String,&#10;    val text: String,&#10;    val createdAt: String&#10;)&#10;" />
             </PendingDiffInfo>
           </value>
         </entry>

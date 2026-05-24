@@ -23,6 +23,7 @@ App Android para seguimiento de habitos dificiles de abandonar, con contador de 
 - Fase 0 completada: plan y documentacion inicial.
 - Fase 1 completada: configuracion base del proyecto.
 - Fase 2 completada: capa domain.
+- Fase 3 completada: persistencia local con Room.
 
 ## Funcionalidades implementadas
 - Documentacion base del proyecto.
