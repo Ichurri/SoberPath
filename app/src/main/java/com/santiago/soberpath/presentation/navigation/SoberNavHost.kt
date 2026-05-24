@@ -29,7 +29,6 @@ fun SoberNavHost(
         composable(SoberDestination.Home.route) {
             HomeScreen(
                 onDailyCheckIn = { navController.navigate(SoberDestination.DailyCheckIn.route) },
-                onRegisterRelapse = { /* Placeholder for relapse flow */ },
                 onMotivation = { navController.navigate(SoberDestination.Motivation.route) },
                 onMilestones = { navController.navigate(SoberDestination.Milestones.route) },
                 onSettings = { navController.navigate(SoberDestination.Settings.route) }

@@ -16,26 +16,43 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.santiago.soberpath.R
-
-data class MilestoneUi(
-    val title: String,
-    val daysRequired: Int,
-    val achieved: Boolean
-)
+import com.santiago.soberpath.presentation.util.asString
+import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MilestonesScreen(
     onBack: () -> Unit,
-    milestones: List<MilestoneUi> = emptyList()
+    viewModel: MilestonesViewModel = koinViewModel()
 ) {
+    val state by viewModel.state.collectAsStateWithLifecycle()
+    val snackbarHostState = remember { SnackbarHostState() }
+    val context = LocalContext.current
+
+    LaunchedEffect(Unit) {
+        viewModel.effect.collect { effect ->
+            when (effect) {
+                MilestonesContract.UiEffect.NavigateBack -> onBack()
+                is MilestonesContract.UiEffect.ShowMessage ->
+                    snackbarHostState.showSnackbar(effect.message.asString(context))
+            }
+        }
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -49,7 +66,8 @@ fun MilestonesScreen(
                     }
                 }
             )
-        }
+        },
+        snackbarHost = { SnackbarHost(snackbarHostState) }
     ) { padding ->
         Column(
             modifier = Modifier
@@ -57,11 +75,11 @@ fun MilestonesScreen(
                 .padding(padding)
                 .padding(16.dp)
         ) {
-            if (milestones.isEmpty()) {
+            if (state.milestones.isEmpty()) {
                 Text(text = stringResource(R.string.milestones_empty))
             } else {
                 LazyColumn(modifier = Modifier.fillMaxWidth()) {
-                    items(milestones) { milestone ->
+                    items(state.milestones) { milestone ->
                         MilestoneItem(milestone)
                         Spacer(modifier = Modifier.height(8.dp))
                     }
@@ -72,7 +90,7 @@ fun MilestonesScreen(
 }
 
 @Composable
-private fun MilestoneItem(milestone: MilestoneUi) {
+private fun MilestoneItem(milestone: MilestonesContract.MilestoneUi) {
     Column(modifier = Modifier.fillMaxWidth()) {
         val icon = if (milestone.achieved) {
             Icons.Default.CheckCircle

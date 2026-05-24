@@ -14,27 +14,44 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.santiago.soberpath.R
+import com.santiago.soberpath.presentation.util.asString
+import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    viewModel: SettingsViewModel = koinViewModel()
 ) {
-    var reminderEnabled by rememberSaveable { mutableStateOf(false) }
-    var reminderTime by rememberSaveable { mutableStateOf("09:00") }
+    val state by viewModel.state.collectAsStateWithLifecycle()
+    val snackbarHostState = remember { SnackbarHostState() }
+    val context = LocalContext.current
+
+    LaunchedEffect(Unit) {
+        viewModel.effect.collect { effect ->
+            when (effect) {
+                SettingsContract.UiEffect.NavigateBack -> onBack()
+                is SettingsContract.UiEffect.ShowMessage ->
+                    snackbarHostState.showSnackbar(effect.message.asString(context))
+            }
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -49,7 +66,8 @@ fun SettingsScreen(
                     }
                 }
             )
-        }
+        },
+        snackbarHost = { SnackbarHost(snackbarHostState) }
     ) { padding ->
         Column(
             modifier = Modifier
@@ -63,19 +81,26 @@ fun SettingsScreen(
             ) {
                 Text(text = stringResource(R.string.settings_daily_reminder))
                 Spacer(modifier = Modifier.weight(1f))
-                Switch(checked = reminderEnabled, onCheckedChange = { reminderEnabled = it })
+                Switch(
+                    checked = state.reminderEnabled,
+                    onCheckedChange = {
+                        viewModel.onIntent(SettingsContract.UiIntent.UpdateReminderEnabled(it))
+                    }
+                )
             }
             Spacer(modifier = Modifier.height(12.dp))
             OutlinedTextField(
-                value = reminderTime,
-                onValueChange = { reminderTime = it },
+                value = state.reminderTime,
+                onValueChange = {
+                    viewModel.onIntent(SettingsContract.UiIntent.UpdateReminderTime(it))
+                },
                 label = { Text(stringResource(R.string.settings_reminder_time)) },
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(12.dp))
             Text(text = stringResource(R.string.settings_language))
             Spacer(modifier = Modifier.height(12.dp))
-            Text(text = stringResource(R.string.settings_app_version, "1.0"))
+            Text(text = stringResource(R.string.settings_app_version, state.appVersion))
         }
     }
 }

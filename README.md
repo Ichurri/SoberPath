@@ -26,13 +26,14 @@ App Android para seguimiento de habitos dificiles de abandonar, con contador de 
 - Fase 3 completada: persistencia local con Room.
 - Fase 4 completada: inyeccion de dependencias con Koin.
 - Fase 5 completada: navegacion y UI base.
+- Fase 6 completada: MVVM + MVI por pantalla.
 
 ## Funcionalidades implementadas
 - Documentacion base del proyecto.
 - Pantallas Compose base y navegacion.
+- Estado MVI con ViewModels y flujos reactivos.
 
 ## Funcionalidades pendientes
-- MVVM/MVI por pantalla.
 - Firebase Remote Config, FCM y App Distribution.
 - Notificaciones locales y localizacion.
 - Logica de negocio y funcionalidades finales.

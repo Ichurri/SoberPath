@@ -16,26 +16,42 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.santiago.soberpath.R
+import com.santiago.soberpath.presentation.util.asString
+import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MotivationScreen(
     onBack: () -> Unit,
-    reasons: List<String> = emptyList(),
-    onAddReason: (String) -> Unit = {}
+    viewModel: MotivationViewModel = koinViewModel()
 ) {
-    var newReason by rememberSaveable { mutableStateOf("") }
+    val state by viewModel.state.collectAsStateWithLifecycle()
+    val snackbarHostState = remember { SnackbarHostState() }
+    val context = LocalContext.current
+
+    LaunchedEffect(Unit) {
+        viewModel.effect.collect { effect ->
+            when (effect) {
+                MotivationContract.UiEffect.NavigateBack -> onBack()
+                is MotivationContract.UiEffect.ShowMessage ->
+                    snackbarHostState.showSnackbar(effect.message.asString(context))
+            }
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -50,7 +66,8 @@ fun MotivationScreen(
                     }
                 }
             )
-        }
+        },
+        snackbarHost = { SnackbarHost(snackbarHostState) }
     ) { padding ->
         Column(
             modifier = Modifier
@@ -58,12 +75,12 @@ fun MotivationScreen(
                 .padding(padding)
                 .padding(16.dp)
         ) {
-            if (reasons.isEmpty()) {
+            if (state.reasons.isEmpty()) {
                 Text(text = stringResource(R.string.motivation_empty))
                 Spacer(modifier = Modifier.height(12.dp))
             } else {
                 LazyColumn(modifier = Modifier.weight(1f, fill = false)) {
-                    items(reasons) { reason ->
+                    items(state.reasons) { reason ->
                         Text(text = "• $reason")
                         Spacer(modifier = Modifier.height(8.dp))
                     }
@@ -71,19 +88,15 @@ fun MotivationScreen(
                 Spacer(modifier = Modifier.height(12.dp))
             }
             OutlinedTextField(
-                value = newReason,
-                onValueChange = { newReason = it },
+                value = state.newReason,
+                onValueChange = { viewModel.onIntent(MotivationContract.UiIntent.UpdateNewReason(it)) },
                 label = { Text(stringResource(R.string.motivation_add_hint)) },
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(12.dp))
             Button(
-                onClick = {
-                    if (newReason.isNotBlank()) {
-                        onAddReason(newReason.trim())
-                        newReason = ""
-                    }
-                },
+                onClick = { viewModel.onIntent(MotivationContract.UiIntent.AddReason) },
+                enabled = !state.isLoading,
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(stringResource(R.string.motivation_add_button))
