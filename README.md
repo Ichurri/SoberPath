@@ -35,6 +35,7 @@ App Android para seguimiento de habitos dificiles de abandonar, con contador de 
 - Fase 8 completada: notificaciones locales y FCM.
 - Fase 9 completada: Firebase App Distribution.
 - Fase 10 completada: localizacion de recursos.
+- Fase 11 completada: conectividad opcional documentada.
 
 ## Funcionalidades implementadas
 - Documentacion base del proyecto.
