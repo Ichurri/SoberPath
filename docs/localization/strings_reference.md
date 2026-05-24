@@ -11,6 +11,7 @@
 | message_no_active_habit | Primero crea un habito. | Create a habit first. | Global | Estado sin habito |
 | message_reason_added | Razon agregada. | Reason added. | Motivation | Confirmacion |
 | message_relapse_not_ready | El flujo de recaida se agregara pronto. | Relapse flow will be added soon. | Home | Pendiente |
+| message_relapse_registered | Recaida registrada. | Relapse registered. | Home | Confirmacion |
 | message_remote_config_updated | Remote config actualizado. | Remote config updated. | Settings | Debug |
 | message_remote_config_failed | No se pudo actualizar Remote config. | Remote config update failed. | Settings | Debug |
 | message_notification_permission_required | Se requiere permiso de notificaciones. | Notification permission required. | Settings | Permisos |
@@ -38,6 +39,9 @@
 | home_empty_title | Aun no hay habito | No habit yet | Home | Estado vacio |
 | home_empty_description | Crea tu primer habito desde el onboarding. | Create your first habit from the onboarding screen. | Home | Estado vacio |
 | home_emergency_tips_title | Consejos de emergencia | Emergency tips | Home | Seccion |
+| home_checkins_title | Check-ins recientes | Recent check-ins | Home | Seccion |
+| home_checkins_empty | Aun no hay check-ins. | No check-ins yet. | Home | Estado vacio |
+| home_checkins_item | %1$s · %2$s · Tentacion %3$d | %1$s · %2$s · Craving %3$d | Home | Item |
 | daily_check_in_title | Check-in diario | Daily check-in | DailyCheckIn | Titulo |
 | daily_check_in_mood_label | Estado de animo | Mood | DailyCheckIn | Campo |
 | daily_check_in_craving_label | Nivel de tentacion | Craving level | DailyCheckIn | Campo |

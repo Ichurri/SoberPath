@@ -9,6 +9,7 @@
     <string name="message_no_active_habit">Create a habit first.</string>
     <string name="message_reason_added">Reason added.</string>
     <string name="message_relapse_not_ready">Relapse flow will be added soon.</string>
+    <string name="message_relapse_registered">Relapse registered.</string>
     <string name="message_remote_config_updated">Remote config updated.</string>
     <string name="message_remote_config_failed">Remote config update failed.</string>
     <string name="message_notification_permission_required">Notification permission required.</string>
@@ -38,6 +39,9 @@
     <string name="home_empty_title">No habit yet</string>
     <string name="home_empty_description">Create your first habit from the onboarding screen.</string>
     <string name="home_emergency_tips_title">Emergency tips</string>
+    <string name="home_checkins_title">Recent check-ins</string>
+    <string name="home_checkins_empty">No check-ins yet.</string>
+    <string name="home_checkins_item">%1$s · %2$s · Craving %3$d</string>
 
     <string name="daily_check_in_title">Daily check-in</string>
     <string name="daily_check_in_mood_label">Mood</string>

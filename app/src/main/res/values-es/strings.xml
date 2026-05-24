@@ -9,6 +9,7 @@
     <string name="message_no_active_habit">Primero crea un habito.</string>
     <string name="message_reason_added">Razon agregada.</string>
     <string name="message_relapse_not_ready">El flujo de recaida se agregara pronto.</string>
+    <string name="message_relapse_registered">Recaida registrada.</string>
     <string name="message_remote_config_updated">Remote config actualizado.</string>
     <string name="message_remote_config_failed">No se pudo actualizar Remote config.</string>
     <string name="message_notification_permission_required">Se requiere permiso de notificaciones.</string>
@@ -38,6 +39,9 @@
     <string name="home_empty_title">Aun no hay habito</string>
     <string name="home_empty_description">Crea tu primer habito desde el onboarding.</string>
     <string name="home_emergency_tips_title">Consejos de emergencia</string>
+    <string name="home_checkins_title">Check-ins recientes</string>
+    <string name="home_checkins_empty">Aun no hay check-ins.</string>
+    <string name="home_checkins_item">%1$s · %2$s · Tentacion %3$d</string>
 
     <string name="daily_check_in_title">Check-in diario</string>
     <string name="daily_check_in_mood_label">Estado de animo</string>

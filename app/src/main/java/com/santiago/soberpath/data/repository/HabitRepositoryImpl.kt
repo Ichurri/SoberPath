@@ -12,6 +12,7 @@ import java.time.Duration
 import java.time.LocalDate
 import java.time.LocalDateTime
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 
 class HabitRepositoryImpl(
@@ -45,7 +46,24 @@ class HabitRepositoryImpl(
     }
 
     override fun getMilestones(habitId: String): Flow<List<Milestone>> {
-        return milestoneDao.observeAll().map { list -> list.map { it.toDomain() } }
+        return combine(
+            habitDao.observeById(habitId),
+            milestoneDao.observeAll()
+        ) { habitEntity, milestones ->
+            val daysSinceRelapse = habitEntity?.let { entity ->
+                val relapseAtStart = LocalDate.parse(entity.lastRelapseDate).atStartOfDay()
+                val duration = if (LocalDateTime.now().isBefore(relapseAtStart)) {
+                    Duration.ZERO
+                } else {
+                    Duration.between(relapseAtStart, LocalDateTime.now())
+                }
+                duration.toDays()
+            } ?: 0
+
+            milestones.map { milestone ->
+                milestone.toDomain().copy(achieved = daysSinceRelapse >= milestone.daysRequired)
+            }
+        }
     }
 
     private fun com.santiago.soberpath.data.local.entity.HabitEntity.toProgress(

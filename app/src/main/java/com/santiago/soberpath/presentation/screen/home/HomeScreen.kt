@@ -130,6 +130,28 @@ fun HomeScreen(
                 }
             }
 
+            Text(
+                text = stringResource(R.string.home_checkins_title),
+                style = MaterialTheme.typography.titleMedium
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            if (state.recentCheckIns.isEmpty()) {
+                Text(text = stringResource(R.string.home_checkins_empty))
+            } else {
+                state.recentCheckIns.forEach { checkIn ->
+                    Text(
+                        text = stringResource(
+                            R.string.home_checkins_item,
+                            checkIn.date,
+                            checkIn.mood,
+                            checkIn.cravingLevel
+                        )
+                    )
+                    Spacer(modifier = Modifier.height(4.dp))
+                }
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+
             Button(
                 onClick = { viewModel.onIntent(HomeContract.UiIntent.DailyCheckInClicked) },
                 modifier = Modifier.fillMaxWidth()

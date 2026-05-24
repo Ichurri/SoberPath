@@ -11,7 +11,14 @@ object HomeContract {
         val savingsText: String = "",
         val motivationalMessage: String = "",
         val emergencyTipsEnabled: Boolean = false,
-        val emergencyTipsMessage: String = ""
+        val emergencyTipsMessage: String = "",
+        val recentCheckIns: List<CheckInUi> = emptyList()
+    )
+
+    data class CheckInUi(
+        val date: String,
+        val mood: String,
+        val cravingLevel: Int
     )
 
     sealed interface UiIntent {
