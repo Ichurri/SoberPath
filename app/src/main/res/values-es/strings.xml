@@ -1,0 +1,73 @@
+<resources>
+    <string name="app_name">SoberPath</string>
+    <string name="action_back">Atras</string>
+
+    <string name="error_required_fields">Completa todos los campos requeridos.</string>
+    <string name="error_invalid_date">Fecha invalida. Usa YYYY-MM-DD.</string>
+    <string name="error_invalid_cost">Ingresa un costo diario valido.</string>
+    <string name="error_generic">Ocurrio un error. Intenta de nuevo.</string>
+    <string name="message_no_active_habit">Primero crea un habito.</string>
+    <string name="message_reason_added">Razon agregada.</string>
+    <string name="message_relapse_not_ready">El flujo de recaida se agregara pronto.</string>
+    <string name="message_remote_config_updated">Remote config actualizado.</string>
+    <string name="message_remote_config_failed">No se pudo actualizar Remote config.</string>
+    <string name="message_notification_permission_required">Se requiere permiso de notificaciones.</string>
+    <string name="message_notification_permission_denied">Permiso denegado. Recordatorios desactivados.</string>
+    <string name="message_invalid_time">Hora invalida. Usa HH:mm.</string>
+
+    <string name="onboarding_title">Crea tu habito</string>
+    <string name="onboarding_habit_name_label">Nombre del habito</string>
+    <string name="onboarding_category_label">Categoria</string>
+    <string name="onboarding_start_date_label">Fecha de inicio</string>
+    <string name="onboarding_start_date_hint">YYYY-MM-DD</string>
+    <string name="onboarding_daily_cost_label">Costo diario</string>
+    <string name="onboarding_currency_label">Moneda</string>
+    <string name="onboarding_create_button">Crear habito</string>
+
+    <string name="home_title">Inicio</string>
+    <string name="home_time_since_last_relapse">Tiempo desde la ultima recaida</string>
+    <string name="home_time_placeholder">00d 00h 00m</string>
+    <string name="home_savings_label">Ahorro estimado</string>
+    <string name="home_savings_placeholder">$0.00</string>
+    <string name="home_motivational_message">Sigue adelante. Un dia a la vez.</string>
+    <string name="home_daily_check_in">Check-in diario</string>
+    <string name="home_register_relapse">Registrar recaida</string>
+    <string name="home_go_to_motivation">Motivacion</string>
+    <string name="home_go_to_milestones">Logros</string>
+    <string name="home_go_to_settings">Ajustes</string>
+    <string name="home_empty_title">Aun no hay habito</string>
+    <string name="home_empty_description">Crea tu primer habito desde el onboarding.</string>
+    <string name="home_emergency_tips_title">Consejos de emergencia</string>
+
+    <string name="daily_check_in_title">Check-in diario</string>
+    <string name="daily_check_in_mood_label">Estado de animo</string>
+    <string name="daily_check_in_craving_label">Nivel de tentacion</string>
+    <string name="daily_check_in_craving_value">Nivel %1$d</string>
+    <string name="daily_check_in_note_label">Nota diaria</string>
+    <string name="daily_check_in_pledge_label">Me comprometo con mi meta diaria</string>
+    <string name="daily_check_in_save_button">Guardar check-in</string>
+
+    <string name="motivation_title">Motivacion</string>
+    <string name="motivation_empty">Aun no hay razones. Agrega la primera.</string>
+    <string name="motivation_add_hint">Agregar una razon</string>
+    <string name="motivation_add_button">Agregar razon</string>
+
+    <string name="milestones_title">Logros</string>
+    <string name="milestones_empty">Aun no hay logros cargados.</string>
+    <string name="milestones_days_required">%1$d dias</string>
+
+    <string name="settings_title">Ajustes</string>
+    <string name="settings_daily_reminder">Recordatorio diario</string>
+    <string name="settings_reminder_time">Hora del recordatorio</string>
+    <string name="settings_language">Idioma (segun el sistema)</string>
+    <string name="settings_app_version">Version de la app: %1$s</string>
+    <string name="settings_remote_config_title">Remote config (debug)</string>
+    <string name="settings_remote_config_button">Actualizar remote config</string>
+
+    <string name="notification_channel_name">Recordatorios diarios</string>
+    <string name="notification_channel_description">Notificaciones de recordatorio diario</string>
+    <string name="notification_daily_title">Check-in diario</string>
+    <string name="notification_daily_body">Toma un momento para tu check-in.</string>
+    <string name="notification_push_default_title">Actualizacion de SoberPath</string>
+</resources>
+
