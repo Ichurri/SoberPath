@@ -37,6 +37,7 @@ App Android para seguimiento de habitos dificiles de abandonar, con contador de 
 - Fase 10 completada: localizacion de recursos.
 - Fase 11 completada: conectividad opcional documentada.
 - Fase 12 completada: funcionalidades principales.
+- Fase 13 completada: checklist de pruebas manuales.
 
 ## Funcionalidades implementadas
 - Documentacion base del proyecto.
