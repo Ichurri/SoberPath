@@ -21,6 +21,7 @@ App Android para seguimiento de habitos dificiles de abandonar, con contador de 
 
 ## Estado actual del desarrollo
 - Fase 0 completada: plan y documentacion inicial.
+- Fase 1 completada: configuracion base del proyecto.
 
 ## Funcionalidades implementadas
 - Documentacion base del proyecto.

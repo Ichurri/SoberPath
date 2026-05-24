@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.santiago.soberpath" />
+                  <option name="mobileSdkAppId" value="1:419755880565:android:0e110d8adb22eb85d9883c" />
+                  <option name="projectId" value="programovil-edd72" />
+                  <option name="projectNumber" value="419755880565" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
