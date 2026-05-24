@@ -6,6 +6,8 @@ data class AppConfig(
     val dailyReminderHour: Int,
     val remoteMessage: String,
     val emergencyTipsEnabled: Boolean,
-    val minSupportedVersion: Int
+    val minSupportedVersion: Int,
+    val motivationalQuote: String,
+    val showMilestoneAnimation: Boolean,
+    val checkinRequired: Boolean
 )
-

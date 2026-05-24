@@ -32,6 +32,7 @@
     <string name="home_go_to_settings">Settings</string>
     <string name="home_empty_title">No habit yet</string>
     <string name="home_empty_description">Create your first habit from the onboarding screen.</string>
+    <string name="home_emergency_tips_title">Emergency tips</string>
 
     <string name="daily_check_in_title">Daily check-in</string>
     <string name="daily_check_in_mood_label">Mood</string>

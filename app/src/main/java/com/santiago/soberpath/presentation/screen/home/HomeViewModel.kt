@@ -6,6 +6,7 @@ import com.santiago.soberpath.R
 import com.santiago.soberpath.domain.model.Habit
 import com.santiago.soberpath.domain.model.SobrietyProgress
 import com.santiago.soberpath.domain.usecase.GetActiveHabitUseCase
+import com.santiago.soberpath.domain.usecase.GetRemoteConfigUseCase
 import com.santiago.soberpath.domain.usecase.GetSobrietyProgressUseCase
 import com.santiago.soberpath.presentation.util.UiText
 import java.util.Locale
@@ -21,7 +22,8 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val getActiveHabitUseCase: GetActiveHabitUseCase,
-    private val getSobrietyProgressUseCase: GetSobrietyProgressUseCase
+    private val getSobrietyProgressUseCase: GetSobrietyProgressUseCase,
+    private val getRemoteConfigUseCase: GetRemoteConfigUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow(HomeContract.UiState())
     val state: StateFlow<HomeContract.UiState> = _state.asStateFlow()
@@ -33,6 +35,7 @@ class HomeViewModel(
 
     init {
         observeHabit()
+        observeRemoteConfig()
     }
 
     fun onIntent(intent: HomeContract.UiIntent) {
@@ -97,5 +100,18 @@ class HomeViewModel(
     private fun emitEffect(effect: HomeContract.UiEffect) {
         viewModelScope.launch { _effect.emit(effect) }
     }
-}
 
+    private fun observeRemoteConfig() {
+        viewModelScope.launch {
+            getRemoteConfigUseCase().collectLatest { config ->
+                _state.update {
+                    it.copy(
+                        motivationalMessage = config.motivationalQuote,
+                        emergencyTipsEnabled = config.emergencyTipsEnabled,
+                        emergencyTipsMessage = config.remoteMessage
+                    )
+                }
+            }
+        }
+    }
+}

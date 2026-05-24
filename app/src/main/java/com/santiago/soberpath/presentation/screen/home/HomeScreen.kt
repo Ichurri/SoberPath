@@ -115,6 +115,19 @@ fun HomeScreen(
                     }
                 )
                 Spacer(modifier = Modifier.height(16.dp))
+                if (state.emergencyTipsEnabled && state.emergencyTipsMessage.isNotBlank()) {
+                    Card(modifier = Modifier.fillMaxWidth()) {
+                        Column(modifier = Modifier.padding(16.dp)) {
+                            Text(
+                                text = stringResource(R.string.home_emergency_tips_title),
+                                style = MaterialTheme.typography.titleMedium
+                            )
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Text(text = state.emergencyTipsMessage)
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(16.dp))
+                }
             }
 
             Button(

@@ -27,13 +27,15 @@ App Android para seguimiento de habitos dificiles de abandonar, con contador de 
 - Fase 4 completada: inyeccion de dependencias con Koin.
 - Fase 5 completada: navegacion y UI base.
 - Fase 6 completada: MVVM + MVI por pantalla.
+- Fase 7 completada: Firebase Remote Config.
 
 ## Funcionalidades implementadas
 - Documentacion base del proyecto.
 - Pantallas Compose base y navegacion.
 - Estado MVI con ViewModels y flujos reactivos.
+- Configuracion remota con defaults locales.
 
 ## Funcionalidades pendientes
-- Firebase Remote Config, FCM y App Distribution.
+- FCM y App Distribution.
 - Notificaciones locales y localizacion.
 - Logica de negocio y funcionalidades finales.

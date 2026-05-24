@@ -9,7 +9,9 @@ object HomeContract {
         val habitName: String = "",
         val timeSinceRelapse: String = "",
         val savingsText: String = "",
-        val motivationalMessage: String = ""
+        val motivationalMessage: String = "",
+        val emergencyTipsEnabled: Boolean = false,
+        val emergencyTipsMessage: String = ""
     )
 
     sealed interface UiIntent {
@@ -28,4 +30,3 @@ object HomeContract {
         data class ShowMessage(val message: UiText) : UiEffect
     }
 }
-
