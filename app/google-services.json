@@ -1,0 +1,87 @@
+{
+  "project_info": {
+    "project_number": "419755880565",
+    "firebase_url": "https://programovil-edd72-default-rtdb.firebaseio.com",
+    "project_id": "programovil-edd72",
+    "storage_bucket": "programovil-edd72.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:419755880565:android:e43670bd31da867ed9883c",
+        "android_client_info": {
+          "package_name": "com.example.tercerexamen"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAg2YNWdWOQQucqJr7qzy8khkm5uy__MYc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:419755880565:android:0e110d8adb22eb85d9883c",
+        "android_client_info": {
+          "package_name": "com.santiago.soberpath"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAg2YNWdWOQQucqJr7qzy8khkm5uy__MYc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:419755880565:android:ac51949a6cea5e35d9883c",
+        "android_client_info": {
+          "package_name": "com.santiago.syncconfigapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAg2YNWdWOQQucqJr7qzy8khkm5uy__MYc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:419755880565:android:e832995820d5631ed9883c",
+        "android_client_info": {
+          "package_name": "com.ucb.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAg2YNWdWOQQucqJr7qzy8khkm5uy__MYc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
