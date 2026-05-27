@@ -9,6 +9,8 @@ import com.santiago.soberpath.domain.repository.ConfigRepository
 import com.santiago.soberpath.domain.repository.HabitRepository
 import com.santiago.soberpath.domain.repository.MotivationRepository
 import org.koin.dsl.module
+import com.santiago.soberpath.data.repository.OnboardingRepositoryImpl
+import com.santiago.soberpath.domain.repository.OnboardingRepository
 
 object RepositoryModule {
     val module = module {
@@ -16,5 +18,6 @@ object RepositoryModule {
         single<CheckInRepository> { CheckInRepositoryImpl(get()) }
         single<MotivationRepository> { MotivationRepositoryImpl(get()) }
         single<ConfigRepository> { ConfigRepositoryImpl(get()) }
+        single<OnboardingRepository> { OnboardingRepositoryImpl(get()) }
     }
 }

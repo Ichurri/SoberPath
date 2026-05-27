@@ -12,6 +12,8 @@ import com.santiago.soberpath.domain.usecase.RefreshRemoteConfigUseCase
 import com.santiago.soberpath.domain.usecase.RegisterRelapseUseCase
 import com.santiago.soberpath.domain.usecase.SaveDailyCheckInUseCase
 import org.koin.dsl.module
+import com.santiago.soberpath.domain.usecase.CompleteOnboardingUseCase
+import com.santiago.soberpath.domain.usecase.IsOnboardingCompletedUseCase
 
 object UseCaseModule {
     val module = module {
@@ -26,6 +28,8 @@ object UseCaseModule {
         factory { GetMilestonesUseCase(get()) }
         factory { GetRemoteConfigUseCase(get()) }
         factory { RefreshRemoteConfigUseCase(get()) }
+        factory { IsOnboardingCompletedUseCase(get()) }
+        factory { CompleteOnboardingUseCase(get()) }
     }
 }
 

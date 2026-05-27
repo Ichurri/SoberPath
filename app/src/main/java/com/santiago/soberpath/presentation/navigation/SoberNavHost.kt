@@ -14,38 +14,72 @@ import com.santiago.soberpath.presentation.screen.settings.SettingsScreen
 @Composable
 fun SoberNavHost(
     navController: NavHostController,
-    startDestination: String = SoberDestination.Onboarding.route
+    startDestination: String
 ) {
-    NavHost(navController = navController, startDestination = startDestination) {
+    NavHost(
+        navController = navController,
+        startDestination = startDestination
+    ) {
         composable(SoberDestination.Onboarding.route) {
             OnboardingScreen(
-                onCreateHabit = {
+                onNavigateHome = {
                     navController.navigate(SoberDestination.Home.route) {
-                        popUpTo(SoberDestination.Onboarding.route) { inclusive = true }
+                        popUpTo(SoberDestination.Onboarding.route) {
+                            inclusive = true
+                        }
+                        launchSingleTop = true
                     }
                 }
             )
         }
+
         composable(SoberDestination.Home.route) {
             HomeScreen(
-                onDailyCheckIn = { navController.navigate(SoberDestination.DailyCheckIn.route) },
-                onMotivation = { navController.navigate(SoberDestination.Motivation.route) },
-                onMilestones = { navController.navigate(SoberDestination.Milestones.route) },
-                onSettings = { navController.navigate(SoberDestination.Settings.route) }
+                onDailyCheckIn = {
+                    navController.navigate(SoberDestination.DailyCheckIn.route)
+                },
+                onMotivation = {
+                    navController.navigate(SoberDestination.Motivation.route)
+                },
+                onMilestones = {
+                    navController.navigate(SoberDestination.Milestones.route)
+                },
+                onSettings = {
+                    navController.navigate(SoberDestination.Settings.route)
+                }
             )
         }
+
         composable(SoberDestination.DailyCheckIn.route) {
-            DailyCheckInScreen(onBack = { navController.popBackStack() })
+            DailyCheckInScreen(
+                onBack = {
+                    navController.popBackStack()
+                }
+            )
         }
+
         composable(SoberDestination.Motivation.route) {
-            MotivationScreen(onBack = { navController.popBackStack() })
+            MotivationScreen(
+                onBack = {
+                    navController.popBackStack()
+                }
+            )
         }
+
         composable(SoberDestination.Milestones.route) {
-            MilestonesScreen(onBack = { navController.popBackStack() })
+            MilestonesScreen(
+                onBack = {
+                    navController.popBackStack()
+                }
+            )
         }
+
         composable(SoberDestination.Settings.route) {
-            SettingsScreen(onBack = { navController.popBackStack() })
+            SettingsScreen(
+                onBack = {
+                    navController.popBackStack()
+                }
+            )
         }
     }
 }
-

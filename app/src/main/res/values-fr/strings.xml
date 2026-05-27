@@ -1,0 +1,9 @@
+<resources>
+    <string name="onboarding_title">Bienvenue sur SoberPath</string>
+    <string name="onboarding_loading">Chargement de l’onboarding...</string>
+    <string name="onboarding_skip_button">Ignorer</string>
+    <string name="onboarding_previous_button">Précédent</string>
+    <string name="onboarding_next_button">Suivant</string>
+    <string name="onboarding_start_button">Commencer</string>
+    <string name="onboarding_image_description">Image de l’onboarding</string>
+</resources>

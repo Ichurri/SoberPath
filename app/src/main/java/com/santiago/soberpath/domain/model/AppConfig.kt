@@ -9,5 +9,6 @@ data class AppConfig(
     val minSupportedVersion: Int,
     val motivationalQuote: String,
     val showMilestoneAnimation: Boolean,
-    val checkinRequired: Boolean
+    val checkinRequired: Boolean,
+    val onboardingConfig: List<OnboardingSlide> = emptyList()
 )

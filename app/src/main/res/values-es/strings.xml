@@ -73,5 +73,14 @@
     <string name="notification_daily_title">Check-in diario</string>
     <string name="notification_daily_body">Toma un momento para tu check-in.</string>
     <string name="notification_push_default_title">Actualizacion de SoberPath</string>
+
+    <string name="onboarding_title">Bienvenido a SoberPath</string>
+    <string name="onboarding_loading">Cargando onboarding...</string>
+    <string name="onboarding_skip_button">Omitir</string>
+    <string name="onboarding_previous_button">Anterior</string>
+    <string name="onboarding_next_button">Siguiente</string>
+    <string name="onboarding_start_button">Iniciar</string>
+    <string name="onboarding_image_description">Imagen del onboarding</string>
+
 </resources>
 
