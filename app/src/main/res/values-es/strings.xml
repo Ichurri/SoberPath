@@ -16,14 +16,6 @@
     <string name="message_notification_permission_denied">Permiso denegado. Recordatorios desactivados.</string>
     <string name="message_invalid_time">Hora invalida. Usa HH:mm.</string>
 
-    <string name="onboarding_habit_name_label">Nombre del habito</string>
-    <string name="onboarding_category_label">Categoria</string>
-    <string name="onboarding_start_date_label">Fecha de inicio</string>
-    <string name="onboarding_start_date_hint">YYYY-MM-DD</string>
-    <string name="onboarding_daily_cost_label">Costo diario</string>
-    <string name="onboarding_currency_label">Moneda</string>
-    <string name="onboarding_create_button">Crear habito</string>
-
     <string name="home_title">Inicio</string>
     <string name="home_time_since_last_relapse">Tiempo desde la ultima recaida</string>
     <string name="home_time_placeholder">00d 00h 00m</string>

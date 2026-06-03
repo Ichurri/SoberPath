@@ -114,9 +114,9 @@ class FirebaseRemoteConfigDataSource(
         "fr": "Gérez facilement vos tâches, projets et priorités avec FlowWise."
       },
       "image_url": {
-        "es": "https://placehold.co/800x600/png?text=Slide+1+ES",
-        "en": "https://placehold.co/800x600/png?text=Slide+1+EN",
-        "fr": "https://placehold.co/800x600/png?text=Slide+1+FR"
+        "es": "https://tuservidor.com/assets/onboarding/es/slide1.png",
+        "en": "https://tuservidor.com/assets/onboarding/en/slide1.png",
+        "fr": "https://tuservidor.com/assets/onboarding/fr/slide1.png"
       }
     },
     {
@@ -132,9 +132,9 @@ class FirebaseRemoteConfigDataSource(
         "fr": "Collaborez en temps réel con vos collègues et gardez tout le monde synchronisé."
       },
       "image_url": {
-        "es": "https://placehold.co/800x600/png?text=Slide+2+ES",
-        "en": "https://placehold.co/800x600/png?text=Slide+2+EN",
-        "fr": "https://placehold.co/800x600/png?text=Slide+2+FR"
+        "es": "https://tuservidor.com/assets/onboarding/es/slide2.png",
+        "en": "https://tuservidor.com/assets/onboarding/en/slide2.png",
+        "fr": "https://tuservidor.com/assets/onboarding/fr/slide2.png"
       }
     },
     {
@@ -150,9 +150,9 @@ class FirebaseRemoteConfigDataSource(
         "fr": "Accédez à des statistiques détaillées sur votre productivité et atteignez vos objectifs."
       },
       "image_url": {
-        "es": "https://placehold.co/800x600/png?text=Slide+3+ES",
-        "en": "https://placehold.co/800x600/png?text=Slide+3+EN",
-        "fr": "https://placehold.co/800x600/png?text=Slide+3+FR"
+        "es": "https://tuservidor.com/assets/onboarding/es/slide3.png",
+        "en": "https://tuservidor.com/assets/onboarding/en/slide3.png",
+        "fr": "https://tuservidor.com/assets/onboarding/fr/slide3.png"
       }
     },
     {
@@ -165,12 +165,12 @@ class FirebaseRemoteConfigDataSource(
       "description": {
         "es": "Crea tu cuenta ahora y transforma tu manera de trabajar desde hoy mismo.",
         "en": "Create your account now and transform the way you work today.",
-        "fr": "Créez votre compte maintenant et transformez votre façon de travailler dès aujourd'hui."
+        "fr": "Créez votre compte maintenant et transformez votre façon de trabajar dès aujourd'hui."
       },
       "image_url": {
-        "es": "https://placehold.co/800x600/png?text=Slide+4+ES",
-        "en": "https://placehold.co/800x600/png?text=Slide+4+EN",
-        "fr": "https://placehold.co/800x600/png?text=Slide+4+FR"
+        "es": "https://tuservidor.com/assets/onboarding/es/slide4.png",
+        "en": "https://tuservidor.com/assets/onboarding/en/slide4.png",
+        "fr": "https://tuservidor.com/assets/onboarding/fr/slide4.png"
       }
     }
   ]

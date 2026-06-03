@@ -7,7 +7,8 @@ object OnboardingContract {
     data class UiState(
         val slides: List<OnboardingSlideUi> = emptyList(),
         val currentIndex: Int = 0,
-        val isLoading: Boolean = true
+        val isLoading: Boolean = true,
+        val currentLanguage: String = "en"
     ) {
         val currentSlide: OnboardingSlideUi?
             get() = slides.getOrNull(currentIndex)
@@ -31,6 +32,7 @@ object OnboardingContract {
         data object Next : UiIntent
         data object Skip : UiIntent
         data object Start : UiIntent
+        data class ChangeLanguage(val language: String) : UiIntent
     }
 
     sealed interface UiEffect {

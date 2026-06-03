@@ -31,7 +31,9 @@ class OnboardingViewModel(
     val effect = _effect.asSharedFlow()
 
     init {
-        loadOnboardingFromRemoteConfig()
+        val initialLanguage = getDeviceLanguage()
+        _state.update { it.copy(currentLanguage = initialLanguage) }
+        loadOnboardingFromRemoteConfig(initialLanguage)
     }
 
     fun onIntent(intent: OnboardingContract.UiIntent) {
@@ -40,17 +42,19 @@ class OnboardingViewModel(
             OnboardingContract.UiIntent.Next -> nextSlide()
             OnboardingContract.UiIntent.Skip -> skipOnboarding()
             OnboardingContract.UiIntent.Start -> completeOnboarding()
+            is OnboardingContract.UiIntent.ChangeLanguage -> changeLanguage(intent.language)
         }
     }
 
-    private fun loadOnboardingFromRemoteConfig() {
+    private fun loadOnboardingFromRemoteConfig(language: String) {
         viewModelScope.launch {
-            runCatching {
-                refreshRemoteConfigUseCase()
+            if (_state.value.isLoading) {
+                runCatching {
+                    refreshRemoteConfigUseCase()
+                }
             }
 
             val config = getRemoteConfigUseCase().first()
-            val language = getDeviceLanguage()
 
             val slides = config.onboardingConfig
                 .sortedBy { it.id }
@@ -59,11 +63,15 @@ class OnboardingViewModel(
             _state.update {
                 it.copy(
                     slides = slides,
-                    currentIndex = 0,
                     isLoading = false
                 )
             }
         }
+    }
+
+    private fun changeLanguage(language: String) {
+        _state.update { it.copy(currentLanguage = language) }
+        loadOnboardingFromRemoteConfig(language)
     }
 
     private fun previousSlide() {
