@@ -16,7 +16,6 @@
     <string name="message_notification_permission_denied">Permiso denegado. Recordatorios desactivados.</string>
     <string name="message_invalid_time">Hora invalida. Usa HH:mm.</string>
 
-    <string name="onboarding_title">Crea tu habito</string>
     <string name="onboarding_habit_name_label">Nombre del habito</string>
     <string name="onboarding_category_label">Categoria</string>
     <string name="onboarding_start_date_label">Fecha de inicio</string>
@@ -83,4 +82,3 @@
     <string name="onboarding_image_description">Imagen del onboarding</string>
 
 </resources>
-

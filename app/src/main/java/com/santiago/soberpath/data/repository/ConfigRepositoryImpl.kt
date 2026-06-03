@@ -13,7 +13,7 @@ class ConfigRepositoryImpl(
         remoteConfigDataSource.applyDefaults()
         emit(remoteConfigDataSource.getConfig())
 
-        val updated = runCatching { remoteConfigDataSource.fetchAndActivate() }
+        val updated = runCatching { remoteConfigDataSource.refresh() }
             .getOrDefault(false)
         if (updated) {
             emit(remoteConfigDataSource.getConfig())
@@ -25,4 +25,3 @@ class ConfigRepositoryImpl(
         return runCatching { remoteConfigDataSource.refresh() }.getOrDefault(false)
     }
 }
-

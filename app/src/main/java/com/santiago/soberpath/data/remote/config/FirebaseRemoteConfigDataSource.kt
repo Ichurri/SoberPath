@@ -16,7 +16,7 @@ class FirebaseRemoteConfigDataSource(
         applyDefaults()
     }
 
-    private fun applyDefaults() {
+    fun applyDefaults() {
         remoteConfig.setDefaultsAsync(
             mapOf(
                 KEY_REMOTE_MESSAGE to "",
@@ -57,11 +57,9 @@ class FirebaseRemoteConfigDataSource(
 
     private fun parseOnboardingConfig(json: String): List<OnboardingSlide> {
         return runCatching {
-            val array = if (json.trim().startsWith("{")) {
-                JSONObject(json).getJSONArray(KEY_ONBOARDING_CONFIG)
-            } else {
-                JSONArray(json)
-            }
+            val root = JSONObject(json)
+            val array = root.optJSONArray(KEY_ONBOARDING_CONFIG) 
+                ?: if (json.trim().startsWith("[")) JSONArray(json) else JSONArray()
 
             List(array.length()) { index ->
                 val item = array.getJSONObject(index)
@@ -101,80 +99,82 @@ class FirebaseRemoteConfigDataSource(
         private const val DEFAULT_DAILY_REMINDER_HOUR = 9
 
         private const val DEFAULT_ONBOARDING_CONFIG = """
-[
-  {
-    "id": 1,
-    "title": {
-      "es": "Comienza tu camino",
-      "en": "Start your journey",
-      "fr": "Commencez votre chemin"
+{
+  "onboarding_config": [
+    {
+      "id": 1,
+      "title": {
+        "es": "¡Organiza tu día!",
+        "en": "Organize your day!",
+        "fr": "Organisez votre journée !"
+      },
+      "description": {
+        "es": "Gestiona tareas, proyectos y prioridades de forma sencilla con FlowWise.",
+        "en": "Easily manage tasks, projects, and priorities with FlowWise.",
+        "fr": "Gérez facilement vos tâches, projets et priorités avec FlowWise."
+      },
+      "image_url": {
+        "es": "https://placehold.co/800x600/png?text=Slide+1+ES",
+        "en": "https://placehold.co/800x600/png?text=Slide+1+EN",
+        "fr": "https://placehold.co/800x600/png?text=Slide+1+FR"
+      }
     },
-    "description": {
-      "es": "SoberPath te acompaña en tu proceso de cambio, ayudándote a mantener el enfoque día a día.",
-      "en": "SoberPath supports your recovery journey and helps you stay focused day by day.",
-      "fr": "SoberPath vous accompagne dans votre processus de changement et vous aide à rester concentré chaque jour."
+    {
+      "id": 2,
+      "title": {
+        "es": "Trabaja en equipo",
+        "en": "Teamwork",
+        "fr": "Travail d'équipe"
+      },
+      "description": {
+        "es": "Colabora en tiempo real con tus compañeros y mantén a todos sincronizados.",
+        "en": "Collaborate in real-time with your teammates and keep everyone in sync.",
+        "fr": "Collaborez en temps réel con vos collègues et gardez tout le monde synchronisé."
+      },
+      "image_url": {
+        "es": "https://placehold.co/800x600/png?text=Slide+2+ES",
+        "en": "https://placehold.co/800x600/png?text=Slide+2+EN",
+        "fr": "https://placehold.co/800x600/png?text=Slide+2+FR"
+      }
     },
-    "image_url": {
-      "es": "https://placehold.co/800x600/png?text=SoberPath+Inicio",
-      "en": "https://placehold.co/800x600/png?text=SoberPath+Start",
-      "fr": "https://placehold.co/800x600/png?text=SoberPath+Debut"
+    {
+      "id": 3,
+      "title": {
+        "es": "Mide tu progreso",
+        "en": "Track your progress",
+        "fr": "Mesurez votre progression"
+      },
+      "description": {
+        "es": "Accede a estadísticas detalladas sobre tu productividad y alcanza tus metas.",
+        "en": "Access detailed statistics about your productivity and reach your goals.",
+        "fr": "Accédez à des statistiques détaillées sur votre productivité et atteignez vos objectifs."
+      },
+      "image_url": {
+        "es": "https://placehold.co/800x600/png?text=Slide+3+ES",
+        "en": "https://placehold.co/800x600/png?text=Slide+3+EN",
+        "fr": "https://placehold.co/800x600/png?text=Slide+3+FR"
+      }
+    },
+    {
+      "id": 4,
+      "title": {
+        "es": "Todo listo para empezar",
+        "en": "All ready to start",
+        "fr": "Tout est prêt"
+      },
+      "description": {
+        "es": "Crea tu cuenta ahora y transforma tu manera de trabajar desde hoy mismo.",
+        "en": "Create your account now and transform the way you work today.",
+        "fr": "Créez votre compte maintenant et transformez votre façon de travailler dès aujourd'hui."
+      },
+      "image_url": {
+        "es": "https://placehold.co/800x600/png?text=Slide+4+ES",
+        "en": "https://placehold.co/800x600/png?text=Slide+4+EN",
+        "fr": "https://placehold.co/800x600/png?text=Slide+4+FR"
+      }
     }
-  },
-  {
-    "id": 2,
-    "title": {
-      "es": "Registra tu progreso",
-      "en": "Track your progress",
-      "fr": "Suivez votre progression"
-    },
-    "description": {
-      "es": "Visualiza tus días de avance, el tiempo logrado y el dinero ahorrado durante tu proceso.",
-      "en": "View your sober days, achieved time, and money saved during your process.",
-      "fr": "Visualisez vos jours de progrès, le temps atteint et l'argent économisé pendant votre parcours."
-    },
-    "image_url": {
-      "es": "https://placehold.co/800x600/png?text=Progreso",
-      "en": "https://placehold.co/800x600/png?text=Progress",
-      "fr": "https://placehold.co/800x600/png?text=Progression"
-    }
-  },
-  {
-    "id": 3,
-    "title": {
-      "es": "Haz check-in diario",
-      "en": "Daily check-in",
-      "fr": "Bilan quotidien"
-    },
-    "description": {
-      "es": "Registra tu estado de ánimo, tus impulsos y tu compromiso para fortalecer tu recuperación.",
-      "en": "Record your mood, cravings, and commitment to strengthen your recovery.",
-      "fr": "Enregistrez votre humeur, vos envies et votre engagement pour renforcer votre rétablissement."
-    },
-    "image_url": {
-      "es": "https://placehold.co/800x600/png?text=Check-in+Diario",
-      "en": "https://placehold.co/800x600/png?text=Daily+Check-in",
-      "fr": "https://placehold.co/800x600/png?text=Bilan+Quotidien"
-    }
-  },
-  {
-    "id": 4,
-    "title": {
-      "es": "Mantén tu motivación",
-      "en": "Stay motivated",
-      "fr": "Restez motive"
-    },
-    "description": {
-      "es": "Guarda tus razones personales, revisa tus logros y continúa avanzando un día a la vez.",
-      "en": "Save your personal reasons, review your achievements, and keep moving forward one day at a time.",
-      "fr": "Gardez vos raisons personnelles, consultez vos réussites et avancez un jour à la fois."
-    },
-    "image_url": {
-      "es": "https://placehold.co/800x600/png?text=Motivacion",
-      "en": "https://placehold.co/800x600/png?text=Motivation",
-      "fr": "https://placehold.co/800x600/png?text=Motivation"
-    }
-  }
-]
+  ]
+}
 """
     }
 }
