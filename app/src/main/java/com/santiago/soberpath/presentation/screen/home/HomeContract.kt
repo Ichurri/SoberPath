@@ -3,6 +3,7 @@ package com.santiago.soberpath.presentation.screen.home
 import com.santiago.soberpath.presentation.util.UiText
 
 object HomeContract {
+
     data class UiState(
         val isLoading: Boolean = true,
         val hasHabit: Boolean = false,
@@ -12,7 +13,9 @@ object HomeContract {
         val motivationalMessage: String = "",
         val emergencyTipsEnabled: Boolean = false,
         val emergencyTipsMessage: String = "",
-        val recentCheckIns: List<CheckInUi> = emptyList()
+        val recentCheckIns: List<CheckInUi> = emptyList(),
+        val relapseCount: Int = 0,
+        val lastRelapseDate: String = ""
     )
 
     data class CheckInUi(
@@ -27,6 +30,7 @@ object HomeContract {
         object MotivationClicked : UiIntent
         object MilestonesClicked : UiIntent
         object SettingsClicked : UiIntent
+        object SetupRecoveryClicked : UiIntent
     }
 
     sealed interface UiEffect {
@@ -34,6 +38,7 @@ object HomeContract {
         object NavigateMotivation : UiEffect
         object NavigateMilestones : UiEffect
         object NavigateSettings : UiEffect
+        object NavigateRecoverySetup : UiEffect
         data class ShowMessage(val message: UiText) : UiEffect
     }
 }

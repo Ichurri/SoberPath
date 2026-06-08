@@ -9,15 +9,17 @@ import com.santiago.soberpath.presentation.screen.settings.SettingsViewModel
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 import com.santiago.soberpath.presentation.navigation.AppStartViewModel
+import com.santiago.soberpath.presentation.screen.recoverysetup.RecoverySetupViewModel
 
 object ViewModelModule {
     val module = module {
         viewModel { OnboardingViewModel(get(), get(), get()) }
-        viewModel { HomeViewModel(get(), get(), get(), get(), get()) }
+        viewModel { HomeViewModel(get(), get(), get(), get(), get(), get()) }
         viewModel { DailyCheckInViewModel(get(), get()) }
         viewModel { MotivationViewModel(get(), get(), get()) }
         viewModel { MilestonesViewModel(get(), get()) }
         viewModel { SettingsViewModel(get(), get()) }
-        viewModel { AppStartViewModel(get()) }
+        viewModel { AppStartViewModel(get(), get()) }
+        viewModel { RecoverySetupViewModel (get()) }
     }
 }

@@ -73,4 +73,26 @@
     <string name="onboarding_start_button">Iniciar</string>
     <string name="onboarding_image_description">Imagen del onboarding</string>
 
+    <string name="home_empty_button">Crear seguimiento</string>
+
+    <string name="recovery_setup_title">Configuración inicial</string>
+    <string name="recovery_setup_header">Empieza tu camino de recuperación</string>
+    <string name="recovery_setup_description">Configura tu primer seguimiento. Esto ayudará a SoberPath a medir tu progreso, ahorros, check-ins, logros e historial de recaídas.</string>
+
+    <string name="recovery_setup_habit_name_label">¿Qué quieres controlar?</string>
+    <string name="recovery_setup_habit_name_placeholder">Ejemplo: alcohol, cigarro, apuestas</string>
+
+    <string name="recovery_setup_daily_cost_label">Costo diario estimado</string>
+    <string name="recovery_setup_daily_cost_placeholder">Ejemplo: 20</string>
+
+    <string name="recovery_setup_currency_label">Moneda</string>
+    <string name="recovery_setup_save_button">Empezar seguimiento</string>
+
+    <string name="recovery_setup_error_name_required">Ingresa lo que quieres controlar.</string>
+    <string name="recovery_setup_error_invalid_cost">Ingresa un monto válido.</string>
+
+    <string name="home_relapse_history_title">Historial de recaídas</string>
+    <string name="home_relapse_count">Recaídas registradas: %1$d</string>
+    <string name="home_last_relapse">Última recaída: %1$s</string>
+    <string name="home_last_relapse_empty">Aún no hay recaídas registradas.</string>
 </resources>

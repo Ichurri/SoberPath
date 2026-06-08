@@ -79,4 +79,27 @@
     <string name="notification_daily_title">Daily check-in</string>
     <string name="notification_daily_body">Take a moment to record your check-in.</string>
     <string name="notification_push_default_title">SoberPath update</string>
+
+    <string name="home_empty_button">Create tracking</string>
+
+    <string name="recovery_setup_title">Recovery setup</string>
+    <string name="recovery_setup_header">Start your recovery path</string>
+    <string name="recovery_setup_description">Set up your first recovery tracking. This will help SoberPath measure your progress, savings, check-ins, milestones and relapse history.</string>
+
+    <string name="recovery_setup_habit_name_label">What do you want to track?</string>
+    <string name="recovery_setup_habit_name_placeholder">Example: Alcohol, smoking, gambling</string>
+
+    <string name="recovery_setup_daily_cost_label">Estimated daily cost</string>
+    <string name="recovery_setup_daily_cost_placeholder">Example: 20</string>
+
+    <string name="recovery_setup_currency_label">Currency</string>
+    <string name="recovery_setup_save_button">Start tracking</string>
+
+    <string name="recovery_setup_error_name_required">Please enter what you want to track.</string>
+    <string name="recovery_setup_error_invalid_cost">Please enter a valid amount.</string>
+
+    <string name="home_relapse_history_title">Relapse history</string>
+    <string name="home_relapse_count">Relapses registered: %1$d</string>
+    <string name="home_last_relapse">Last relapse: %1$s</string>
+    <string name="home_last_relapse_empty">No relapses registered yet.</string>
 </resources>

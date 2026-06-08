@@ -1,6 +1,12 @@
 package com.santiago.soberpath.presentation.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -9,22 +15,64 @@ import com.santiago.soberpath.presentation.screen.home.HomeScreen
 import com.santiago.soberpath.presentation.screen.milestones.MilestonesScreen
 import com.santiago.soberpath.presentation.screen.motivation.MotivationScreen
 import com.santiago.soberpath.presentation.screen.onboarding.OnboardingScreen
+import com.santiago.soberpath.presentation.screen.recoverysetup.RecoverySetupScreen
 import com.santiago.soberpath.presentation.screen.settings.SettingsScreen
+import com.santiago.soberpath.presentation.screen.splash.SplashScreen
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun SoberNavHost(
     navController: NavHostController,
-    startDestination: String
+    startDestination: String = SoberDestination.Splash.route
 ) {
     NavHost(
         navController = navController,
         startDestination = startDestination
     ) {
+        composable(SoberDestination.Splash.route) {
+            val viewModel: AppStartViewModel = koinViewModel()
+            val state by viewModel.state.collectAsStateWithLifecycle()
+
+            var splashFinished by remember { mutableStateOf(false) }
+
+            LaunchedEffect(splashFinished, state.nextDestination) {
+                val destination = state.nextDestination
+
+                if (splashFinished && destination != null) {
+                    navController.navigate(destination) {
+                        popUpTo(SoberDestination.Splash.route) {
+                            inclusive = true
+                        }
+                        launchSingleTop = true
+                    }
+                }
+            }
+
+            SplashScreen(
+                onAnimationFinished = {
+                    splashFinished = true
+                }
+            )
+        }
+
         composable(SoberDestination.Onboarding.route) {
             OnboardingScreen(
                 onNavigateHome = {
-                    navController.navigate(SoberDestination.Home.route) {
+                    navController.navigate(SoberDestination.RecoverySetup.route) {
                         popUpTo(SoberDestination.Onboarding.route) {
+                            inclusive = true
+                        }
+                        launchSingleTop = true
+                    }
+                }
+            )
+        }
+
+        composable(SoberDestination.RecoverySetup.route) {
+            RecoverySetupScreen(
+                onNavigateHome = {
+                    navController.navigate(SoberDestination.Home.route) {
+                        popUpTo(SoberDestination.RecoverySetup.route) {
                             inclusive = true
                         }
                         launchSingleTop = true
@@ -46,6 +94,9 @@ fun SoberNavHost(
                 },
                 onSettings = {
                     navController.navigate(SoberDestination.Settings.route)
+                },
+                onRecoverySetup = {
+                    navController.navigate(SoberDestination.RecoverySetup.route)
                 }
             )
         }
