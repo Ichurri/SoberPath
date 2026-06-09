@@ -1,6 +1,7 @@
 package com.santiago.soberpath.presentation.screen.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -50,6 +51,8 @@ fun HomeScreen(
     onMilestones: () -> Unit,
     onSettings: () -> Unit,
     onRecoverySetup: () -> Unit,
+    onRegisterRelapse: () -> Unit,
+    onRelapseHistory: () -> Unit,
     viewModel: HomeViewModel = koinViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
@@ -64,6 +67,8 @@ fun HomeScreen(
                 HomeContract.UiEffect.NavigateMilestones -> onMilestones()
                 HomeContract.UiEffect.NavigateSettings -> onSettings()
                 HomeContract.UiEffect.NavigateRecoverySetup -> onRecoverySetup()
+                HomeContract.UiEffect.NavigateRegisterRelapse -> onRegisterRelapse()
+                HomeContract.UiEffect.NavigateRelapseHistory -> onRelapseHistory()
                 is HomeContract.UiEffect.ShowMessage -> {
                     snackbarHostState.showSnackbar(effect.message.asString(context))
                 }
@@ -155,7 +160,10 @@ fun HomeScreen(
                                 state.lastRelapseDate
                             )
                         },
-                        modifier = Modifier.weight(1f)
+                        modifier = Modifier.weight(1f),
+                        onClick = {
+                            viewModel.onIntent(HomeContract.UiIntent.RelapseHistoryClicked)
+                        }
                     )
                 }
 
@@ -340,10 +348,13 @@ private fun HomeMetricCard(
     title: String,
     value: String,
     modifier: Modifier = Modifier,
-    subtitle: String? = null
+    subtitle: String? = null,
+    onClick: (() -> Unit)? = null
 ) {
     Card(
-        modifier = modifier,
+        modifier = modifier.then(
+            if (onClick != null) Modifier.clickable { onClick() } else Modifier
+        ),
         shape = RoundedCornerShape(24.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface

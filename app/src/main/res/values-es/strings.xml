@@ -95,4 +95,16 @@
     <string name="home_relapse_count">Recaídas registradas: %1$d</string>
     <string name="home_last_relapse">Última recaída: %1$s</string>
     <string name="home_last_relapse_empty">Aún no hay recaídas registradas.</string>
+
+    <!-- Relapse -->
+    <string name="relapse_title">Registrar recaída</string>
+    <string name="relapse_hero_description">Sé honesto contigo mismo. Esto es parte del proceso.</string>
+    <string name="relapse_date_label">Fecha</string>
+    <string name="relapse_craving_label">Nivel de craving antes de la recaída</string>
+    <string name="relapse_trigger_label">¿Cuál fue el trigger / motivo?</string>
+    <string name="relapse_trigger_placeholder">Ejemplo: Estrés, evento social, etc.</string>
+    <string name="relapse_note_label">Notas (opcional)</string>
+    <string name="relapse_save_button">Confirmar recaída</string>
+    <string name="relapse_history_title">Historial de recaídas</string>
+    <string name="relapse_history_empty">No hay historial disponible.</string>
 </resources>

@@ -16,6 +16,8 @@ import com.santiago.soberpath.presentation.screen.milestones.MilestonesScreen
 import com.santiago.soberpath.presentation.screen.motivation.MotivationScreen
 import com.santiago.soberpath.presentation.screen.onboarding.OnboardingScreen
 import com.santiago.soberpath.presentation.screen.recoverysetup.RecoverySetupScreen
+import com.santiago.soberpath.presentation.screen.relapse.RelapseHistoryScreen
+import com.santiago.soberpath.presentation.screen.relapse.RelapseScreen
 import com.santiago.soberpath.presentation.screen.settings.SettingsScreen
 import com.santiago.soberpath.presentation.screen.splash.SplashScreen
 import org.koin.androidx.compose.koinViewModel
@@ -97,6 +99,12 @@ fun SoberNavHost(
                 },
                 onRecoverySetup = {
                     navController.navigate(SoberDestination.RecoverySetup.route)
+                },
+                onRegisterRelapse = {
+                    navController.navigate(SoberDestination.RegisterRelapse.route)
+                },
+                onRelapseHistory = {
+                    navController.navigate(SoberDestination.RelapseHistory.route)
                 }
             )
         }
@@ -127,6 +135,22 @@ fun SoberNavHost(
 
         composable(SoberDestination.Settings.route) {
             SettingsScreen(
+                onBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+
+        composable(SoberDestination.RegisterRelapse.route) {
+            RelapseScreen(
+                onBack = {
+                    navController.popBackStack()
+                }
+            )
+        }
+
+        composable(SoberDestination.RelapseHistory.route) {
+            RelapseHistoryScreen(
                 onBack = {
                     navController.popBackStack()
                 }

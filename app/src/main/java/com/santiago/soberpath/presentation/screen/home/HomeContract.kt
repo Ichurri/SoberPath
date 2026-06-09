@@ -27,6 +27,7 @@ object HomeContract {
     sealed interface UiIntent {
         object DailyCheckInClicked : UiIntent
         object RegisterRelapseClicked : UiIntent
+        object RelapseHistoryClicked : UiIntent
         object MotivationClicked : UiIntent
         object MilestonesClicked : UiIntent
         object SettingsClicked : UiIntent
@@ -38,6 +39,8 @@ object HomeContract {
         object NavigateMotivation : UiEffect
         object NavigateMilestones : UiEffect
         object NavigateSettings : UiEffect
+        object NavigateRegisterRelapse : UiEffect
+        object NavigateRelapseHistory : UiEffect
         object NavigateRecoverySetup : UiEffect
         data class ShowMessage(val message: UiText) : UiEffect
     }

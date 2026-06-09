@@ -102,4 +102,16 @@
     <string name="home_relapse_count">Relapses registered: %1$d</string>
     <string name="home_last_relapse">Last relapse: %1$s</string>
     <string name="home_last_relapse_empty">No relapses registered yet.</string>
+
+    <!-- Relapse -->
+    <string name="relapse_title">Register relapse</string>
+    <string name="relapse_hero_description">Be honest with yourself. This is part of the process.</string>
+    <string name="relapse_date_label">Date</string>
+    <string name="relapse_craving_label">Craving level before relapse</string>
+    <string name="relapse_trigger_label">What was the trigger?</string>
+    <string name="relapse_trigger_placeholder">Example: Stress, social event, etc.</string>
+    <string name="relapse_note_label">Notes (optional)</string>
+    <string name="relapse_save_button">Confirm relapse</string>
+    <string name="relapse_history_title">Relapse history</string>
+    <string name="relapse_history_empty">No history available.</string>
 </resources>

@@ -2,7 +2,6 @@ package com.santiago.soberpath.presentation.screen.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.santiago.soberpath.R
 import com.santiago.soberpath.domain.model.Habit
 import com.santiago.soberpath.domain.model.SobrietyProgress
 import com.santiago.soberpath.domain.usecase.GetActiveHabitUseCase
@@ -10,7 +9,6 @@ import com.santiago.soberpath.domain.usecase.GetDailyCheckInsUseCase
 import com.santiago.soberpath.domain.usecase.GetRelapsesUseCase
 import com.santiago.soberpath.domain.usecase.GetRemoteConfigUseCase
 import com.santiago.soberpath.domain.usecase.GetSobrietyProgressUseCase
-import com.santiago.soberpath.domain.usecase.RegisterRelapseUseCase
 import com.santiago.soberpath.presentation.util.UiText
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -31,7 +29,6 @@ class HomeViewModel(
     private val getSobrietyProgressUseCase: GetSobrietyProgressUseCase,
     private val getRemoteConfigUseCase: GetRemoteConfigUseCase,
     private val getDailyCheckInsUseCase: GetDailyCheckInsUseCase,
-    private val registerRelapseUseCase: RegisterRelapseUseCase,
     private val getRelapsesUseCase: GetRelapsesUseCase
 ) : ViewModel() {
 
@@ -69,7 +66,11 @@ class HomeViewModel(
             }
 
             HomeContract.UiIntent.RegisterRelapseClicked -> {
-                registerRelapse()
+                emitEffect(HomeContract.UiEffect.NavigateRegisterRelapse)
+            }
+
+            HomeContract.UiIntent.RelapseHistoryClicked -> {
+                emitEffect(HomeContract.UiEffect.NavigateRelapseHistory)
             }
 
             HomeContract.UiIntent.SetupRecoveryClicked -> {
@@ -165,40 +166,6 @@ class HomeViewModel(
                         } ?: ""
                     )
                 }
-            }
-        }
-    }
-
-    private fun registerRelapse() {
-        if (!state.value.hasHabit) {
-            emitEffect(
-                HomeContract.UiEffect.ShowMessage(
-                    UiText.StringResource(R.string.message_no_active_habit)
-                )
-            )
-            return
-        }
-
-        viewModelScope.launch {
-            val current = getActiveHabitUseCase().firstOrNull() ?: return@launch
-
-            runCatching {
-                registerRelapseUseCase(
-                    habitId = current.id,
-                    relapseDate = LocalDate.now()
-                )
-            }.onSuccess {
-                emitEffect(
-                    HomeContract.UiEffect.ShowMessage(
-                        UiText.StringResource(R.string.message_relapse_registered)
-                    )
-                )
-            }.onFailure {
-                emitEffect(
-                    HomeContract.UiEffect.ShowMessage(
-                        UiText.StringResource(R.string.error_generic)
-                    )
-                )
             }
         }
     }
