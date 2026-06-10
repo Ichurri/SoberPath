@@ -31,14 +31,17 @@ object HomeContract {
         object MilestonesClicked : UiIntent
         object SettingsClicked : UiIntent
         object SetupRecoveryClicked : UiIntent
+        object HabitsClicked : UiIntent
     }
 
     sealed interface UiEffect {
         object NavigateDailyCheckIn : UiEffect
+        object NavigateHabits : UiEffect
         object NavigateMotivation : UiEffect
         object NavigateMilestones : UiEffect
         object NavigateSettings : UiEffect
         object NavigateRecoverySetup : UiEffect
+        object NavigateRelapseHistory : UiEffect
         data class ShowMessage(val message: UiText) : UiEffect
     }
 }

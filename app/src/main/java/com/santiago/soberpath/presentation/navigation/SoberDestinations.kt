@@ -9,5 +9,7 @@ sealed class SoberDestination(val route: String) {
     object Motivation : SoberDestination("motivation")
     object Milestones : SoberDestination("milestones")
     object Settings : SoberDestination("settings")
+    object Habits: SoberDestination("habits")
+    object RelapseHistory : SoberDestination("relapse_history")
 }
 

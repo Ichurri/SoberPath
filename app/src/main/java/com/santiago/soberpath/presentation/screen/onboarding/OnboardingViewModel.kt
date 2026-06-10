@@ -30,6 +30,8 @@ class OnboardingViewModel(
     private val _effect = MutableSharedFlow<OnboardingContract.UiEffect>()
     val effect = _effect.asSharedFlow()
 
+    private var remoteConfigJob: kotlinx.coroutines.Job? = null
+
     init {
         val initialLanguage = getDeviceLanguage()
         _state.update { it.copy(currentLanguage = initialLanguage) }
@@ -47,24 +49,25 @@ class OnboardingViewModel(
     }
 
     private fun loadOnboardingFromRemoteConfig(language: String) {
-        viewModelScope.launch {
+        remoteConfigJob?.cancel()
+        remoteConfigJob = viewModelScope.launch {
             if (_state.value.isLoading) {
                 runCatching {
                     refreshRemoteConfigUseCase()
                 }
             }
 
-            val config = getRemoteConfigUseCase().first()
+            getRemoteConfigUseCase().collect { config ->
+                val slides = config.onboardingConfig
+                    .sortedBy { it.id }
+                    .map { it.toUi(language) }
 
-            val slides = config.onboardingConfig
-                .sortedBy { it.id }
-                .map { it.toUi(language) }
-
-            _state.update {
-                it.copy(
-                    slides = slides,
-                    isLoading = false
-                )
+                _state.update {
+                    it.copy(
+                        slides = slides,
+                        isLoading = false
+                    )
+                }
             }
         }
     }
@@ -118,9 +121,9 @@ class OnboardingViewModel(
 
     private fun getDeviceLanguage(): String {
         return when (Locale.getDefault().language.lowercase(Locale.ROOT)) {
-            "es" -> "es"
+            "en" -> "en"
             "fr" -> "fr"
-            else -> "en"
+            else -> "es"
         }
     }
 
@@ -135,8 +138,8 @@ class OnboardingViewModel(
 
     private fun Map<String, String>.localized(language: String): String {
         return this[language]
-            ?: this["en"]
             ?: this["es"]
+            ?: this["en"]
             ?: values.firstOrNull()
             ?: ""
     }

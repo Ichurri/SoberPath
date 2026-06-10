@@ -9,16 +9,7 @@ import kotlinx.coroutines.flow.flow
 class ConfigRepositoryImpl(
     private val remoteConfigDataSource: FirebaseRemoteConfigDataSource
 ) : ConfigRepository {
-    override fun getRemoteConfig(): Flow<AppConfig> = flow {
-        remoteConfigDataSource.applyDefaults()
-        emit(remoteConfigDataSource.getConfig())
-
-        val updated = runCatching { remoteConfigDataSource.refresh() }
-            .getOrDefault(false)
-        if (updated) {
-            emit(remoteConfigDataSource.getConfig())
-        }
-    }
+    override fun getRemoteConfig(): Flow<AppConfig> = remoteConfigDataSource.observeConfigUpdates()
 
     override suspend fun refreshRemoteConfig(): Boolean {
         remoteConfigDataSource.applyDefaults()

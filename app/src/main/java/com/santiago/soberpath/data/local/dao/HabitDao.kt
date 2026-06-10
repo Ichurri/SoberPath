@@ -12,6 +12,8 @@ interface HabitDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsert(habit: HabitEntity)
 
+    @Query ("SELECT * FROM habits ORDER BY startDate DESC")
+    fun observeAllHabits(): Flow<List<HabitEntity>>
     @Query("SELECT * FROM habits WHERE isActive = 1 LIMIT 1")
     fun observeActiveHabit(): Flow<HabitEntity?>
 
@@ -20,5 +22,17 @@ interface HabitDao {
 
     @Query("SELECT * FROM habits WHERE id = :habitId LIMIT 1")
     fun observeById(habitId: String): Flow<HabitEntity?>
+
+    @Query("UPDATE habits SET isActive = 0")
+    suspend fun deactivateAllHabits()
+
+    @Query("UPDATE habits SET isActive = 1 WHERE id = :habitId")
+    suspend fun activateHabit(habitId: String)
+
+    @Query("DELETE FROM habits WHERE id = :habitId")
+    suspend fun deleteById(habitId: String)
+
+    @Query("SELECT * FROM habits ORDER BY startDate DESC")
+    suspend fun getAllHabitsList(): List<HabitEntity>
 }
 

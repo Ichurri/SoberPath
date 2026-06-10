@@ -25,11 +25,11 @@ class NotificationScheduler(
         ) == PackageManager.PERMISSION_GRANTED
     }
 
-    fun scheduleDailyReminder(hour: Int): ScheduleResult {
+    fun scheduleDailyReminder(hour: Int, minute: Int): ScheduleResult {
         if (!canPostNotifications()) return ScheduleResult.MissingPermission
-        if (hour !in 0..23) return ScheduleResult.InvalidTime
+        if (hour !in 0..23 || minute !in 0..59) return ScheduleResult.InvalidTime
 
-        val delay = computeInitialDelay(hour)
+        val delay = computeInitialDelay(hour, minute)
         val request = PeriodicWorkRequestBuilder<DailyReminderWorker>(24, TimeUnit.HOURS)
             .setInitialDelay(delay.toMillis(), TimeUnit.MILLISECONDS)
             .build()
@@ -46,9 +46,9 @@ class NotificationScheduler(
         workManager.cancelUniqueWork(WORK_NAME_DAILY)
     }
 
-    private fun computeInitialDelay(hour: Int): Duration {
+    private fun computeInitialDelay(hour: Int, minute: Int): Duration {
         val now = LocalDateTime.now()
-        val targetToday = LocalDateTime.of(now.toLocalDate(), LocalTime.of(hour, 0))
+        val targetToday = LocalDateTime.of(now.toLocalDate(), LocalTime.of(hour, minute))
         val target = if (now.isAfter(targetToday)) {
             targetToday.plusDays(1)
         } else {

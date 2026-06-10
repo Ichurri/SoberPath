@@ -10,6 +10,8 @@ import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 import com.santiago.soberpath.presentation.navigation.AppStartViewModel
 import com.santiago.soberpath.presentation.screen.recoverysetup.RecoverySetupViewModel
+import com.santiago.soberpath.presentation.screen.habits.HabitListViewModel
+import com.santiago.soberpath.presentation.screen.relapsehistory.RelapseHistoryViewModel
 
 object ViewModelModule {
     val module = module {
@@ -18,8 +20,10 @@ object ViewModelModule {
         viewModel { DailyCheckInViewModel(get(), get()) }
         viewModel { MotivationViewModel(get(), get(), get()) }
         viewModel { MilestonesViewModel(get(), get()) }
-        viewModel { SettingsViewModel(get(), get()) }
+        viewModel { SettingsViewModel(get(), get(), get()) }
         viewModel { AppStartViewModel(get(), get()) }
         viewModel { RecoverySetupViewModel (get()) }
+        viewModel { HabitListViewModel(get(), get(), get()) }
+        viewModel { RelapseHistoryViewModel(get(), get(), get()) }
     }
 }

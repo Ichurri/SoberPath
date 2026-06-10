@@ -14,6 +14,9 @@ import com.santiago.soberpath.domain.usecase.IsOnboardingCompletedUseCase
 import com.santiago.soberpath.domain.usecase.RefreshRemoteConfigUseCase
 import com.santiago.soberpath.domain.usecase.RegisterRelapseUseCase
 import com.santiago.soberpath.domain.usecase.SaveDailyCheckInUseCase
+import com.santiago.soberpath.domain.usecase.GetAllHabitsUseCase
+import com.santiago.soberpath.domain.usecase.SetActiveHabitUseCase
+import com.santiago.soberpath.domain.usecase.DeleteHabitUseCase
 import org.koin.dsl.module
 
 object UseCaseModule {
@@ -32,5 +35,8 @@ object UseCaseModule {
         factory { RefreshRemoteConfigUseCase(get()) }
         factory { IsOnboardingCompletedUseCase(get()) }
         factory { CompleteOnboardingUseCase(get()) }
+        factory { GetAllHabitsUseCase(get()) }
+        factory { SetActiveHabitUseCase(get()) }
+        factory { DeleteHabitUseCase(get()) }
     }
 }

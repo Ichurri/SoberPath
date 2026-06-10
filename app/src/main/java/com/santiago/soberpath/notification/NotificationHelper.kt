@@ -15,8 +15,11 @@ class NotificationHelper(
         ensureChannel()
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.mipmap.ic_launcher)
+            .setLargeIcon(android.graphics.BitmapFactory.decodeResource(context.resources, R.drawable.ic_logo))
             .setContentTitle(context.getString(R.string.notification_daily_title))
             .setContentText(context.getString(R.string.notification_daily_body))
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setDefaults(NotificationCompat.DEFAULT_ALL)
             .setAutoCancel(true)
             .build()
         NotificationManagerCompat.from(context).notify(NOTIFICATION_ID_DAILY, notification)
@@ -26,8 +29,11 @@ class NotificationHelper(
         ensureChannel()
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.mipmap.ic_launcher)
+            .setLargeIcon(android.graphics.BitmapFactory.decodeResource(context.resources, R.drawable.ic_logo))
             .setContentTitle(title)
             .setContentText(body)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setDefaults(NotificationCompat.DEFAULT_ALL)
             .setAutoCancel(true)
             .build()
         NotificationManagerCompat.from(context).notify(NOTIFICATION_ID_PUSH, notification)
@@ -39,7 +45,7 @@ class NotificationHelper(
         val channel = NotificationChannel(
             CHANNEL_ID,
             context.getString(R.string.notification_channel_name),
-            NotificationManager.IMPORTANCE_DEFAULT
+            NotificationManager.IMPORTANCE_HIGH
         ).apply {
             description = context.getString(R.string.notification_channel_description)
         }

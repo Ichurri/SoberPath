@@ -19,9 +19,15 @@ class RegisterRelapseUseCase(
         trigger: String = "",
         note: String = ""
     ): Habit? {
+        val relapseDateTime = if (relapseDate.isEqual(LocalDate.now())) {
+            LocalDateTime.now()
+        } else {
+            relapseDate.atStartOfDay()
+        }
+
         val updatedHabit = habitRepository.registerRelapse(
             habitId = habitId,
-            relapseDate = relapseDate
+            relapseDateTime = relapseDateTime
         )
 
         if (updatedHabit != null) {

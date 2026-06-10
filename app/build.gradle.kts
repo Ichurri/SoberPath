@@ -1,3 +1,7 @@
+import java.net.URL
+import java.net.HttpURLConnection
+import java.net.URI
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
@@ -88,4 +92,37 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     debugImplementation(libs.androidx.compose.ui.tooling)
+}
+
+tasks.register("pullTranslations") {
+    group = "localization"
+    description = "Sincroniza y descarga las traducciones desde localise.biz API usando -PlocoKey"
+
+    doLast {
+        val key = project.findProperty("locoKey") as? String
+        if (key.isNullOrBlank()) {
+            throw GradleException("Error: Por favor proporciona tu API Key de localise.biz usando -PlocoKey=TU_KEY")
+        }
+
+        val locales = mapOf(
+            "es" to file("src/main/res/values/strings.xml"),
+            "en" to file("src/main/res/values-en/strings.xml"),
+            "fr" to file("src/main/res/values-fr/strings.xml")
+        )
+
+        locales.forEach { (locale, targetFile) ->
+            println("Descargando traducción para el idioma: $locale...")
+            val url = URI("https://localise.biz/api/export/locale/$locale.xml?key=$key").toURL()
+            val connection = url.openConnection() as HttpURLConnection
+            connection.requestMethod = "GET"
+            if (connection.responseCode == 200) {
+                targetFile.parentFile.mkdirs()
+                targetFile.writeBytes(connection.inputStream.readAllBytes())
+                println("✔ Guardado correctamente: $locale -> ${targetFile.absolutePath}")
+            } else {
+                val errorText = connection.errorStream?.bufferedReader()?.readText() ?: "Error desconocido"
+                println("✘ Error al descargar $locale: HTTP ${connection.responseCode} - $errorText")
+            }
+        }
+    }
 }
