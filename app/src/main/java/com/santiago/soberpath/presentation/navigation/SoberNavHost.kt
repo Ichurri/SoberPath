@@ -21,6 +21,7 @@ import com.santiago.soberpath.presentation.screen.relapse.RelapseScreen
 import com.santiago.soberpath.presentation.screen.settings.SettingsScreen
 import com.santiago.soberpath.presentation.screen.splash.SplashScreen
 import org.koin.androidx.compose.koinViewModel
+import com.santiago.soberpath.presentation.screen.habits.HabitListScreen
 
 @Composable
 fun SoberNavHost(
@@ -103,6 +104,9 @@ fun SoberNavHost(
                 onRegisterRelapse = {
                     navController.navigate(SoberDestination.RegisterRelapse.route)
                 },
+                onHabits = {
+                    navController.navigate(SoberDestination.Habits.route)
+                },
                 onRelapseHistory = {
                     navController.navigate(SoberDestination.RelapseHistory.route)
                 }
@@ -140,7 +144,6 @@ fun SoberNavHost(
                 }
             )
         }
-
         composable(SoberDestination.RegisterRelapse.route) {
             RelapseScreen(
                 onBack = {
@@ -149,6 +152,16 @@ fun SoberNavHost(
             )
         }
 
+        composable(SoberDestination.Habits.route) {
+            HabitListScreen(
+                onBack = {
+                    navController.popBackStack()
+                },
+                onCreateNewHabit = {
+                    navController.navigate(SoberDestination.RecoverySetup.route)
+                }
+            )
+        }
         composable(SoberDestination.RelapseHistory.route) {
             RelapseHistoryScreen(
                 onBack = {

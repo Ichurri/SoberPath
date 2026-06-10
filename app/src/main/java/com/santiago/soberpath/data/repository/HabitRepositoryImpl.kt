@@ -19,18 +19,40 @@ class HabitRepositoryImpl(
     private val habitDao: HabitDao,
     private val milestoneDao: MilestoneDao
 ) : HabitRepository {
+
     override suspend fun createHabit(habit: Habit): Habit {
+        if (habit.isActive) {
+            habitDao.deactivateAllHabits()
+        }
+
         habitDao.upsert(habit.toEntity())
         return habit
     }
 
-    override fun getActiveHabit(): Flow<Habit?> {
-        return habitDao.observeActiveHabit().map { entity -> entity?.toDomain() }
+    override fun getAllHabits(): Flow<List<Habit>> {
+        return habitDao.observeAllHabits().map { entities ->
+            entities.map { it.toDomain() }
+        }
     }
 
-    override suspend fun registerRelapse(habitId: String, relapseDate: LocalDate): Habit? {
+    override fun getActiveHabit(): Flow<Habit?> {
+        return habitDao.observeActiveHabit().map { entity ->
+            entity?.toDomain()
+        }
+    }
+
+    override suspend fun setActiveHabit(habitId: String): Habit? {
         val existing = habitDao.getById(habitId) ?: return null
-        val updated = existing.copy(lastRelapseDate = relapseDate.toString())
+
+        habitDao.deactivateAllHabits()
+        habitDao.activateHabit(habitId)
+
+        return existing.copy(isActive = true).toDomain()
+    }
+
+    override suspend fun registerRelapse(habitId: String, relapseDateTime: LocalDateTime): Habit? {
+        val existing = habitDao.getById(habitId) ?: return null
+        val updated = existing.copy(lastRelapseDate = relapseDateTime.toString())
         habitDao.upsert(updated)
         return updated.toDomain()
     }
@@ -51,7 +73,15 @@ class HabitRepositoryImpl(
             milestoneDao.observeAll()
         ) { habitEntity, milestones ->
             val daysSinceRelapse = habitEntity?.let { entity ->
-                val relapseAtStart = LocalDate.parse(entity.lastRelapseDate).atStartOfDay()
+                val relapseAtStart = try {
+                    if (entity.lastRelapseDate.contains("T")) {
+                        LocalDateTime.parse(entity.lastRelapseDate)
+                    } else {
+                        LocalDate.parse(entity.lastRelapseDate).atStartOfDay()
+                    }
+                } catch (e: Exception) {
+                    LocalDateTime.now()
+                }
                 val duration = if (LocalDateTime.now().isBefore(relapseAtStart)) {
                     Duration.ZERO
                 } else {
@@ -61,7 +91,22 @@ class HabitRepositoryImpl(
             } ?: 0
 
             milestones.map { milestone ->
-                milestone.toDomain().copy(achieved = daysSinceRelapse >= milestone.daysRequired)
+                milestone.toDomain().copy(
+                    achieved = daysSinceRelapse >= milestone.daysRequired
+                )
+            }
+        }
+    }
+
+    override suspend fun deleteHabit(habitId: String) {
+        val existing = habitDao.getById(habitId) ?: return
+        habitDao.deleteById(habitId)
+
+        if (existing.isActive) {
+            val remaining = habitDao.getAllHabitsList()
+            val nextActive = remaining.firstOrNull()
+            if (nextActive != null) {
+                habitDao.activateHabit(nextActive.id)
             }
         }
     }
@@ -69,18 +114,28 @@ class HabitRepositoryImpl(
     private fun com.santiago.soberpath.data.local.entity.HabitEntity.toProgress(
         now: LocalDateTime
     ): SobrietyProgress {
-        val relapseAtStart = LocalDate.parse(lastRelapseDate).atStartOfDay()
+        val relapseAtStart = try {
+            if (lastRelapseDate.contains("T")) {
+                LocalDateTime.parse(lastRelapseDate)
+            } else {
+                LocalDate.parse(lastRelapseDate).atStartOfDay()
+            }
+        } catch (e: Exception) {
+            now
+        }
+
         val duration = if (now.isBefore(relapseAtStart)) {
             Duration.ZERO
         } else {
             Duration.between(relapseAtStart, now)
         }
+
         val totalMinutes = duration.toMinutes()
         val days = totalMinutes / (60 * 24)
         val hours = (totalMinutes / 60) % 24
         val minutes = totalMinutes % 60
         val savedAmount = days * dailyCost
+
         return SobrietyProgress(totalMinutes, days, hours, minutes, savedAmount)
     }
 }
-

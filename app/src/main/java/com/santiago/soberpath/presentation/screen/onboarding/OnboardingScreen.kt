@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Language
@@ -98,7 +99,7 @@ fun OnboardingScreen(
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Language,
-                                contentDescription = "Change Language",
+                                contentDescription = stringResource(R.string.settings_language),
                                 tint = MaterialTheme.colorScheme.primary
                             )
                         }
@@ -124,16 +125,6 @@ fun OnboardingScreen(
                                 onClick = {
                                     viewModel.onIntent(
                                         OnboardingContract.UiIntent.ChangeLanguage("en")
-                                    )
-                                    showLanguageMenu = false
-                                }
-                            )
-
-                            DropdownMenuItem(
-                                text = { Text("Français") },
-                                onClick = {
-                                    viewModel.onIntent(
-                                        OnboardingContract.UiIntent.ChangeLanguage("fr")
                                     )
                                     showLanguageMenu = false
                                 }
@@ -380,12 +371,24 @@ private fun OnboardingSlideContent(
 
                 Spacer(modifier = Modifier.weight(1f))
 
-                Text(
-                    text = "${state.currentIndex + 1} / ${state.slides.size}",
-                    style = MaterialTheme.typography.bodyMedium,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.58f)
-                )
+                Row(
+                    modifier = Modifier.padding(vertical = 12.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    repeat(state.slides.size) { index ->
+                        val isSelected = state.currentIndex == index
+                        val width = if (isSelected) 24.dp else 8.dp
+                        val color = if (isSelected) MaterialTheme.colorScheme.primary 
+                                    else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.22f)
+                        Box(
+                            modifier = Modifier
+                                .height(8.dp)
+                                .width(width)
+                                .background(color = color, shape = RoundedCornerShape(50))
+                        )
+                    }
+                }
             }
         }
 

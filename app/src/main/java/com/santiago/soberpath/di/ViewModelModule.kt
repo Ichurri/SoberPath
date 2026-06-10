@@ -12,6 +12,7 @@ import com.santiago.soberpath.presentation.navigation.AppStartViewModel
 import com.santiago.soberpath.presentation.screen.recoverysetup.RecoverySetupViewModel
 import com.santiago.soberpath.presentation.screen.relapse.RelapseHistoryViewModel
 import com.santiago.soberpath.presentation.screen.relapse.RelapseViewModel
+import com.santiago.soberpath.presentation.screen.habits.HabitListViewModel
 
 object ViewModelModule {
     val module = module {
@@ -20,10 +21,11 @@ object ViewModelModule {
         viewModel { DailyCheckInViewModel(get(), get()) }
         viewModel { MotivationViewModel(get(), get(), get()) }
         viewModel { MilestonesViewModel(get(), get()) }
-        viewModel { SettingsViewModel(get(), get()) }
+        viewModel { SettingsViewModel(get(), get(), get()) }
         viewModel { AppStartViewModel(get(), get()) }
         viewModel { RecoverySetupViewModel (get()) }
         viewModel { RelapseViewModel(get(), get()) }
         viewModel { RelapseHistoryViewModel(get(), get()) }
+        viewModel { HabitListViewModel(get(), get(), get()) }
     }
 }

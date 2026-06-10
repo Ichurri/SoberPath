@@ -1,16 +1,51 @@
 package com.santiago.soberpath.data.remote.config
 
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.ConfigUpdate
+import com.google.firebase.remoteconfig.ConfigUpdateListener
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigException
 import com.santiago.soberpath.domain.model.AppConfig
 import com.santiago.soberpath.domain.model.OnboardingSlide
 import kotlin.coroutines.resume
 import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.channels.awaitClose
 import org.json.JSONArray
 import org.json.JSONObject
 
 class FirebaseRemoteConfigDataSource(
     private val remoteConfig: FirebaseRemoteConfig
 ) {
+
+    fun observeConfigUpdates(): Flow<AppConfig> = callbackFlow {
+        applyDefaults()
+        trySend(getConfig())
+
+        remoteConfig.fetchAndActivate().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                trySend(getConfig())
+            }
+        }
+
+        val registration = remoteConfig.addOnConfigUpdateListener(object : ConfigUpdateListener {
+            override fun onUpdate(configUpdate: ConfigUpdate) {
+                remoteConfig.activate().addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        trySend(getConfig())
+                    }
+                }
+            }
+
+            override fun onError(error: FirebaseRemoteConfigException) {
+                // Ignore or log error
+            }
+        })
+
+        awaitClose {
+            registration.remove()
+        }
+    }
 
     init {
         applyDefaults()
@@ -104,73 +139,61 @@ class FirebaseRemoteConfigDataSource(
     {
       "id": 1,
       "title": {
-        "es": "¡Organiza tu día!",
-        "en": "Organize your day!",
-        "fr": "Organisez votre journée !"
+        "es": "Recupera el Control",
+        "en": "Take Back Control"
       },
       "description": {
-        "es": "Gestiona tareas, proyectos y prioridades de forma sencilla con FlowWise.",
-        "en": "Easily manage tasks, projects, and priorities with FlowWise.",
-        "fr": "Gérez facilement vos tâches, projets et priorités avec FlowWise."
+        "es": "Registra el tiempo exacto que llevas libre de tus hábitos con un cronómetro interactivo de días, horas, minutos y segundos. ¡Cada segundo cuenta!",
+        "en": "Track the exact time you have been free from habits with an interactive clock showing days, hours, minutes, and seconds. Every second counts!"
       },
       "image_url": {
-        "es": "https://tuservidor.com/assets/onboarding/es/slide1.png",
-        "en": "https://tuservidor.com/assets/onboarding/en/slide1.png",
-        "fr": "https://tuservidor.com/assets/onboarding/fr/slide1.png"
+        "es": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=600&auto=format&fit=crop",
+        "en": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=600&auto=format&fit=crop"
       }
     },
     {
       "id": 2,
       "title": {
-        "es": "Trabaja en equipo",
-        "en": "Teamwork",
-        "fr": "Travail d'équipe"
+        "es": "Celebra tus Logros",
+        "en": "Celebrate Your Milestones"
       },
       "description": {
-        "es": "Colabora en tiempo real con tus compañeros y mantén a todos sincronizados.",
-        "en": "Collaborate in real-time with your teammates and keep everyone in sync.",
-        "fr": "Collaborez en temps réel con vos collègues et gardez tout le monde synchronisé."
+        "es": "Establece metas de abstinencia a corto y largo plazo. Gana medallas virtuales y celebra cada logro superado en tu camino de recuperación.",
+        "en": "Set short and long-term abstinence goals. Earn virtual badges and celebrate every milestone achieved on your journey."
       },
       "image_url": {
-        "es": "https://tuservidor.com/assets/onboarding/es/slide2.png",
-        "en": "https://tuservidor.com/assets/onboarding/en/slide2.png",
-        "fr": "https://tuservidor.com/assets/onboarding/fr/slide2.png"
+        "es": "https://images.unsplash.com/photo-1501555088652-021faa106b9b?q=80&w=600&auto=format&fit=crop",
+        "en": "https://images.unsplash.com/photo-1501555088652-021faa106b9b?q=80&w=600&auto=format&fit=crop"
       }
     },
     {
       "id": 3,
       "title": {
-        "es": "Mide tu progreso",
-        "en": "Track your progress",
-        "fr": "Mesurez votre progression"
+        "es": "Tu Diario Personal",
+        "en": "Your Daily Journal"
       },
       "description": {
-        "es": "Accede a estadísticas detalladas sobre tu productividad y alcanza tus metas.",
-        "en": "Access detailed statistics about your productivity and reach your goals.",
-        "fr": "Accédez à des statistiques détaillées sur votre productivité et atteignez vos objectifs."
+        "es": "Realiza autoevaluaciones diarias de tu estado de ánimo, niveles de ansiedad y tentación para mantener un seguimiento honesto de tu progreso.",
+        "en": "Perform daily self-assessments of your mood, anxiety levels, and temptation to maintain an honest track of your progress."
       },
       "image_url": {
-        "es": "https://tuservidor.com/assets/onboarding/es/slide3.png",
-        "en": "https://tuservidor.com/assets/onboarding/en/slide3.png",
-        "fr": "https://tuservidor.com/assets/onboarding/fr/slide3.png"
+        "es": "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=600&auto=format&fit=crop",
+        "en": "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=600&auto=format&fit=crop"
       }
     },
     {
       "id": 4,
       "title": {
-        "es": "Todo listo para empezar",
-        "en": "All ready to start",
-        "fr": "Tout est prêt"
+        "es": "Un Día a la Vez",
+        "en": "One Day at a Time"
       },
       "description": {
-        "es": "Crea tu cuenta ahora y transforma tu manera de trabajar desde hoy mismo.",
-        "en": "Create your account now and transform the way you work today.",
-        "fr": "Créez votre compte maintenant et transformez votre façon de trabajar dès aujourd'hui."
+        "es": "Registra tus deslices con honestidad para reiniciar tu contador, accede a consejos motivacionales y mantén el enfoque en tu bienestar diario.",
+        "en": "Register relapses honestly to reset your counter, access motivational advice, and stay focused on your daily well-being."
       },
       "image_url": {
-        "es": "https://tuservidor.com/assets/onboarding/es/slide4.png",
-        "en": "https://tuservidor.com/assets/onboarding/en/slide4.png",
-        "fr": "https://tuservidor.com/assets/onboarding/fr/slide4.png"
+        "es": "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?q=80&w=600&auto=format&fit=crop",
+        "en": "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?q=80&w=600&auto=format&fit=crop"
       }
     }
   ]

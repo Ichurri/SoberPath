@@ -1,117 +1,170 @@
-<resources>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Loco xml export: Android strings
+ Project: SoberPath
+ Locale: es-BO, Spanish (Bolivia)
+ Exported by: Alejandra Salinas Vega
+ Exported at: Tue, 09 Jun 2026 02:03:15 -0400
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">SoberPath</string>
-    <string name="action_back">Back</string>
-
-    <string name="error_required_fields">Complete all required fields.</string>
-    <string name="error_invalid_date">Invalid date. Use YYYY-MM-DD.</string>
-    <string name="error_invalid_cost">Enter a valid daily cost.</string>
-    <string name="error_generic">Something went wrong. Try again.</string>
-    <string name="message_no_active_habit">Create a habit first.</string>
-    <string name="message_reason_added">Reason added.</string>
-    <string name="message_relapse_not_ready">Relapse flow will be added soon.</string>
-    <string name="message_relapse_registered">Relapse registered.</string>
-    <string name="message_remote_config_updated">Remote config updated.</string>
-    <string name="message_remote_config_failed">Remote config update failed.</string>
-    <string name="message_notification_permission_required">Notification permission required.</string>
-    <string name="message_notification_permission_denied">Permission denied. Reminders disabled.</string>
-    <string name="message_invalid_time">Invalid time. Use HH:mm.</string>
-
+    <string name="action_back">Atras</string>
+    <string name="error_required_fields">Completa todos los campos requeridos.</string>
+    <string name="error_invalid_date">Fecha invalida. Usa YYYY-MM-DD.</string>
+    <string name="error_invalid_cost">Ingresa un costo diario valido.</string>
+    <string name="error_generic">Ocurrio un error. Intenta de nuevo.</string>
+    <string name="message_no_active_habit">Primero crea un habito.</string>
+    <string name="message_reason_added">Razon agregada.</string>
+    <string name="message_relapse_not_ready">El flujo de recaida se agregara pronto.</string>
+    <string name="message_relapse_registered">Recaida registrada.</string>
+    <string name="message_remote_config_updated">Remote config actualizado.</string>
+    <string name="message_remote_config_failed">No se pudo actualizar Remote config.</string>
+    <string name="message_notification_permission_required">Se requiere permiso de notificaciones.</string>
+    <string name="message_notification_permission_denied">Permiso denegado. Recordatorios desactivados.</string>
+    <string name="message_invalid_time">Hora invalida. Usa HH:mm.</string>
     <!-- Dynamic Onboarding -->
-    <string name="onboarding_title">Welcome to SoberPath</string>
-    <string name="onboarding_loading">Loading onboarding...</string>
-    <string name="onboarding_skip_button">Skip</string>
-    <string name="onboarding_previous_button">Previous</string>
-    <string name="onboarding_next_button">Next</string>
-    <string name="onboarding_start_button">Start</string>
-    <string name="onboarding_image_description">Onboarding image</string>
-
+    <string name="onboarding_title">Bienvenido a SoberPath</string>
+    <string name="onboarding_loading">Cargando onboarding...</string>
+    <string name="onboarding_skip_button">Omitir</string>
+    <string name="onboarding_previous_button">Anterior</string>
+    <string name="onboarding_next_button">Siguiente</string>
+    <string name="onboarding_start_button">Iniciar</string>
+    <string name="onboarding_image_description">Imagen del onboarding</string>
     <!-- Home -->
-    <string name="home_title">Home</string>
-    <string name="home_time_since_last_relapse">Time since last relapse</string>
+    <string name="home_title">Inicio</string>
+    <string name="home_time_since_last_relapse">Tiempo desde la ultima recaida</string>
     <string name="home_time_placeholder">00d 00h 00m</string>
-    <string name="home_savings_label">Estimated savings</string>
+    <string name="home_savings_label">Ahorro estimado</string>
     <string name="home_savings_placeholder">$0.00</string>
-    <string name="home_motivational_message">Keep going. One day at a time.</string>
-    <string name="home_daily_check_in">Daily check-in</string>
-    <string name="home_register_relapse">Register relapse</string>
-    <string name="home_go_to_motivation">Motivation</string>
-    <string name="home_go_to_milestones">Milestones</string>
-    <string name="home_go_to_settings">Settings</string>
-    <string name="home_empty_title">No habit yet</string>
-    <string name="home_empty_description">No active habit has been created yet.</string>
-    <string name="home_emergency_tips_title">Emergency tips</string>
-    <string name="home_checkins_title">Recent check-ins</string>
-    <string name="home_checkins_empty">No check-ins yet.</string>
-    <string name="home_checkins_item">%1$s · %2$s · Craving %3$d</string>
-
+    <string name="home_motivational_message">Sigue adelante. Un dia a la vez.</string>
+    <string name="home_daily_check_in">Check-in diario</string>
+    <string name="home_register_relapse">Registrar recaida</string>
+    <string name="home_go_to_motivation">Motivacion</string>
+    <string name="home_go_to_milestones">Logros</string>
+    <string name="home_go_to_settings">Ajustes</string>
+    <string name="home_empty_title">Aun no hay habito</string>
+    <string name="home_empty_description">Crea tu primer habito desde el onboarding.</string>
+    <string name="home_emergency_tips_title">Consejos de emergencia</string>
+    <string name="home_checkins_title">Check-ins recientes</string>
+    <string name="home_checkins_empty">Aun no hay check-ins.</string>
+    <string name="home_checkins_item">%1$s · %2$s · Tentacion %3$d</string>
     <!-- Daily Check-in -->
-    <string name="daily_check_in_title">Daily check-in</string>
-    <string name="daily_check_in_mood_label">Mood</string>
-    <string name="daily_check_in_craving_label">Craving level</string>
-    <string name="daily_check_in_craving_value">Level %1$d</string>
-    <string name="daily_check_in_note_label">Daily note</string>
-    <string name="daily_check_in_pledge_label">I commit to my daily pledge</string>
-    <string name="daily_check_in_save_button">Save check-in</string>
-
+    <string name="daily_check_in_title">Check-in diario</string>
+    <string name="daily_check_in_mood_label">Estado de animo</string>
+    <string name="daily_check_in_craving_label">Nivel de tentacion</string>
+    <string name="daily_check_in_craving_value">Nivel %1$d</string>
+    <string name="daily_check_in_note_label">Nota diaria</string>
+    <string name="daily_check_in_pledge_label">Me comprometo con mi meta diaria</string>
+    <string name="daily_check_in_save_button">Guardar check-in</string>
     <!-- Motivation -->
-    <string name="motivation_title">Motivation</string>
-    <string name="motivation_empty">No reasons yet. Add your first one.</string>
-    <string name="motivation_add_hint">Add a reason</string>
-    <string name="motivation_add_button">Add reason</string>
-
+    <string name="motivation_title">Motivacion</string>
+    <string name="motivation_empty">Aun no hay razones. Agrega la primera.</string>
+    <string name="motivation_add_hint">Agregar una razon</string>
+    <string name="motivation_add_button">Agregar razon</string>
     <!-- Milestones -->
-    <string name="milestones_title">Milestones</string>
-    <string name="milestones_empty">No milestones loaded yet.</string>
-    <string name="milestones_days_required">%1$d days</string>
-
+    <string name="milestones_title">Logros</string>
+    <string name="milestones_empty">Aun no hay logros cargados.</string>
+    <string name="milestones_days_required">%1$d dias</string>
     <!-- Settings -->
-    <string name="settings_title">Settings</string>
-    <string name="settings_daily_reminder">Daily reminder</string>
-    <string name="settings_reminder_time">Reminder time</string>
-    <string name="settings_language">Language (managed by system)</string>
-    <string name="settings_app_version">App version: %1$s</string>
+    <string name="settings_title">Ajustes</string>
+    <string name="settings_daily_reminder">Recordatorio diario</string>
+    <string name="settings_reminder_time">Hora del recordatorio</string>
+    <string name="settings_language">Idioma (segun el sistema)</string>
+    <string name="settings_app_version">Version de la app: %1$s</string>
     <string name="settings_remote_config_title">Remote config (debug)</string>
-    <string name="settings_remote_config_button">Refresh remote config</string>
-
+    <string name="settings_remote_config_button">Actualizar remote config</string>
     <!-- Notifications -->
-    <string name="notification_channel_name">Daily reminders</string>
-    <string name="notification_channel_description">Daily reminder notifications</string>
-    <string name="notification_daily_title">Daily check-in</string>
-    <string name="notification_daily_body">Take a moment to record your check-in.</string>
-    <string name="notification_push_default_title">SoberPath update</string>
+    <string name="notification_channel_name">Recordatorios diarios</string>
+    <string name="notification_channel_description">Notificaciones de recordatorio diario</string>
+    <string name="notification_daily_title">Check-in diario</string>
+    <string name="notification_daily_body">Toma un momento para tu check-in.</string>
+    <string name="notification_push_default_title">Actualizacion de SoberPath</string>
+    <string name="home_empty_button">Crear seguimiento</string>
+    <string name="recovery_setup_title">Configuración inicial</string>
+    <string name="recovery_setup_header">Empieza tu camino de recuperación</string>
+    <string name="recovery_setup_description">Configura tu primer seguimiento. Esto ayudará a SoberPath a medir tu progreso, ahorros, check-ins, logros e historial de recaídas.</string>
+    <string name="recovery_setup_habit_name_label">¿Qué quieres controlar?</string>
+    <string name="recovery_setup_habit_name_placeholder">Ejemplo: alcohol, cigarro, apuestas</string>
+    <string name="recovery_setup_daily_cost_label">Costo diario estimado</string>
+    <string name="recovery_setup_daily_cost_placeholder">Ejemplo: 20</string>
+    <string name="recovery_setup_currency_label">Moneda</string>
+    <string name="recovery_setup_save_button">Empezar seguimiento</string>
+    <string name="recovery_setup_error_name_required">Ingresa lo que quieres controlar.</string>
+    <string name="recovery_setup_error_invalid_cost">Ingresa un monto válido.</string>
+    <string name="home_relapse_history_title">Historial de recaídas</string>
+    <string name="home_relapse_count">Recaídas registradas: %1$d</string>
+    <string name="home_last_relapse">Última recaída: %1$s</string>
+    <string name="home_last_relapse_empty">Aún no hay recaídas registradas.</string>
+    <string name="habits_title">Mis seguimientos</string>
+    <string name="habits_count">Seguimientos registrados: %1$d</string>
+    <string name="habits_empty">Aún no tienes seguimientos registrados.</string>
+    <string name="habits_create_new">Crear nuevo seguimiento</string>
+    <string name="habits_start_date">Iniciado el: %1$s</string>
+    <string name="habits_active_label">Activo</string>
+    <string name="habits_selected_message">Seguimiento seleccionado.</string>
+    <string name="habits_deleted_message">Seguimiento eliminado.</string>
+    <string name="habits_delete_confirm_title">¿Eliminar seguimiento?</string>
+    <string name="habits_delete_confirm_description">Esta acción es irreversible y eliminará de forma permanente todo el historial de progreso y registro de este seguimiento. ¿Estás seguro de que deseas continuar?</string>
+    <string name="habits_delete_confirm_ok">Sí, eliminar</string>
+    <string name="habits_delete_confirm_cancel">Cancelar</string>
+    <string name="home_go_to_habits">Mis seguimientos</string>
+    <!-- Relapse History and Form -->
+    <string name="relapse_history_item_craving">Ansiedad: %1$d/5</string>
+    <string name="relapse_history_item_trigger">Desencadenante: %1$s</string>
+    <string name="relapse_history_register_title">Registrar desliz</string>
+    <string name="relapse_history_date_label">Fecha del desliz</string>
+    <string name="relapse_history_craving_label">Nivel de ansiedad / tentación: %1$d</string>
+    <string name="relapse_history_trigger_label">Desencadenante (Trigger)</string>
+    <string name="relapse_history_notes_label">Notas o reflexiones (opcional)</string>
+    <string name="relapse_history_save_button">Registrar</string>
+    <string name="relapse_history_cancel_button">Cancelar</string>
+    <string name="relapse_history_confirm_title">¿Confirmar registro?</string>
+    <string name="relapse_history_confirm_description">Al registrar este desliz, el contador de sobriedad de tu hábito activo se reiniciará a 0 en base a la fecha seleccionada. ¿Quieres continuar?</string>
+    <string name="relapse_history_confirm_ok">Sí, registrar desliz</string>
+    <string name="relapse_history_trigger_stress">Estrés / Ansiedad</string>
+    <string name="relapse_history_trigger_social">Presión Social</string>
+    <string name="relapse_history_trigger_boredom">Aburrimiento</string>
+    <string name="relapse_history_trigger_sadness">Tristeza / Soledad</string>
+    <string name="relapse_history_trigger_celebration">Celebración / Felicidad</string>
+    <string name="relapse_history_trigger_other">Otro</string>
+    <!-- Redesigned Settings Screen Strings -->
+    <string name="settings_hero_desc">Configura tus recordatorios diarios y visualiza las preferencias del sistema.</string>
+    <string name="settings_time_picker_title">Hora del recordatorio</string>
+    <string name="settings_time_picker_subtitle">Toca para cambiar la hora</string>
+    <string name="settings_app_language_title">Idioma de la aplicación</string>
+    <string name="settings_app_language_description">Configurado automáticamente según el sistema de tu dispositivo.</string>
+    <string name="settings_debug_options_title">Opciones de Desarrollador (Debug)</string>
+    <string name="settings_debug_options_desc">Prueba y sincroniza configuraciones dinámicas desde Firebase.</string>
 
-    <string name="home_empty_button">Create tracking</string>
-
-    <string name="recovery_setup_title">Recovery setup</string>
-    <string name="recovery_setup_header">Start your recovery path</string>
-    <string name="recovery_setup_description">Set up your first recovery tracking. This will help SoberPath measure your progress, savings, check-ins, milestones and relapse history.</string>
-
-    <string name="recovery_setup_habit_name_label">What do you want to track?</string>
-    <string name="recovery_setup_habit_name_placeholder">Example: Alcohol, smoking, gambling</string>
-
-    <string name="recovery_setup_daily_cost_label">Estimated daily cost</string>
-    <string name="recovery_setup_daily_cost_placeholder">Example: 20</string>
-
-    <string name="recovery_setup_currency_label">Currency</string>
-    <string name="recovery_setup_save_button">Start tracking</string>
-
-    <string name="recovery_setup_error_name_required">Please enter what you want to track.</string>
-    <string name="recovery_setup_error_invalid_cost">Please enter a valid amount.</string>
-
-    <string name="home_relapse_history_title">Relapse history</string>
-    <string name="home_relapse_count">Relapses registered: %1$d</string>
-    <string name="home_last_relapse">Last relapse: %1$s</string>
-    <string name="home_last_relapse_empty">No relapses registered yet.</string>
-
+    <!-- Home screen strings -->
+    <string name="home_subtitle">Tu camino a la recuperación</string>
+    <string name="home_checkin_ready_title">¡Check-in del día listo!</string>
+    <string name="home_checkin_ready_description">Buen trabajo. Mantente firme.</string>
+    <string name="home_checkin_pending_title">¿Cómo vas hoy?</string>
+    <string name="home_checkin_pending_description">Registra tu estado y tu compromiso diario.</string>
+    <string name="home_checkin_register_button">Registrar</string>
+    <string name="dashboard_milestones_title">Logros</string>
+    <string name="dashboard_milestones_description">Mis medallas</string>
+    <string name="dashboard_motivation_title">Motivación</string>
+    <string name="dashboard_motivation_description">Mis razones</string>
+    <string name="dashboard_habits_title">Metas</string>
+    <string name="dashboard_habits_description">Ver hábitos</string>
+    <string name="dashboard_relapse_title">Desliz</string>
+    <string name="dashboard_relapse_description">Registrar caída</string>
     <!-- Relapse -->
-    <string name="relapse_title">Register relapse</string>
-    <string name="relapse_hero_description">Be honest with yourself. This is part of the process.</string>
-    <string name="relapse_date_label">Date</string>
-    <string name="relapse_craving_label">Craving level before relapse</string>
-    <string name="relapse_trigger_label">What was the trigger?</string>
-    <string name="relapse_trigger_placeholder">Example: Stress, social event, etc.</string>
-    <string name="relapse_note_label">Notes (optional)</string>
-    <string name="relapse_save_button">Confirm relapse</string>
-    <string name="relapse_history_title">Relapse history</string>
-    <string name="relapse_history_empty">No history available.</string>
+    <string name="relapse_title">Registrar recaída</string>
+    <string name="relapse_hero_description">Sé honesto contigo mismo. Esto es parte del proceso.</string>
+    <string name="relapse_date_label">Fecha</string>
+    <string name="relapse_craving_label">Nivel de craving antes de la recaída</string>
+    <string name="relapse_trigger_label">¿Cuál fue el trigger / motivo?</string>
+    <string name="relapse_trigger_placeholder">Ejemplo: Estrés, evento social, etc.</string>
+    <string name="relapse_note_label">Notas (opcional)</string>
+    <string name="relapse_save_button">Confirmar recaída</string>
+    <string name="relapse_history_title">Historial de recaídas</string>
+    <string name="relapse_history_empty">No hay historial disponible.</string>
+
+    <!-- Settings screen strings -->
+    <string name="settings_daily_reminder_desc">Recibe una alerta diaria para realizar tu check-in y registrar tu sobriedad.</string>
+    <string name="settings_reminder_disabled_note">Activa el interruptor para programar la hora de tu recordatorio diario.</string>
+    <string name="settings_reminder_time_scheduled">Programado a las %1$s</string>
 </resources>

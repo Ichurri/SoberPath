@@ -6,7 +6,7 @@ import com.santiago.soberpath.R
 import com.santiago.soberpath.domain.model.Habit
 import com.santiago.soberpath.domain.usecase.CreateHabitUseCase
 import com.santiago.soberpath.presentation.util.UiText
-import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.UUID
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -91,14 +91,14 @@ class RecoverySetupViewModel(
 
         if (hasError) return
 
-        val today = LocalDate.now()
+        val now = LocalDateTime.now()
 
         val habit = Habit(
             id = UUID.randomUUID().toString(),
             name = name,
             category = "recovery",
-            startDate = today,
-            lastRelapseDate = today,
+            startDate = now,
+            lastRelapseDate = now,
             dailyCost = parsedCost ?: 0.0,
             currency = currentState.currency.trim().ifBlank { "Bs" },
             isActive = true

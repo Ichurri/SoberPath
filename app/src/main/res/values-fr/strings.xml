@@ -1,4 +1,28 @@
-<resources>
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Loco xml export: Android strings
+ Project: SoberPath
+ Locale: fr-FR, French (France)
+ Exported by: Alejandra Salinas Vega
+ Exported at: Tue, 09 Jun 2026 02:03:16 -0400
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name"></string>
+    <string name="action_back"></string>
+    <string name="error_required_fields"></string>
+    <string name="error_invalid_date"></string>
+    <string name="error_invalid_cost"></string>
+    <string name="error_generic"></string>
+    <string name="message_no_active_habit"></string>
+    <string name="message_reason_added"></string>
+    <string name="message_relapse_not_ready"></string>
+    <string name="message_relapse_registered"></string>
+    <string name="message_remote_config_updated"></string>
+    <string name="message_remote_config_failed"></string>
+    <string name="message_notification_permission_required"></string>
+    <string name="message_notification_permission_denied"></string>
+    <string name="message_invalid_time"></string>
+    <!-- Dynamic Onboarding -->
     <string name="onboarding_title">Bienvenue sur SoberPath</string>
     <string name="onboarding_loading">Chargement de l’onboarding...</string>
     <string name="onboarding_skip_button">Ignorer</string>
@@ -6,4 +30,77 @@
     <string name="onboarding_next_button">Suivant</string>
     <string name="onboarding_start_button">Commencer</string>
     <string name="onboarding_image_description">Image de l’onboarding</string>
+    <!-- Home -->
+    <string name="home_title"></string>
+    <string name="home_time_since_last_relapse"></string>
+    <string name="home_time_placeholder"></string>
+    <string name="home_savings_label"></string>
+    <string name="home_savings_placeholder"></string>
+    <string name="home_motivational_message"></string>
+    <string name="home_daily_check_in"></string>
+    <string name="home_register_relapse"></string>
+    <string name="home_go_to_motivation"></string>
+    <string name="home_go_to_milestones"></string>
+    <string name="home_go_to_settings"></string>
+    <string name="home_empty_title"></string>
+    <string name="home_empty_description"></string>
+    <string name="home_emergency_tips_title"></string>
+    <string name="home_checkins_title"></string>
+    <string name="home_checkins_empty"></string>
+    <string name="home_checkins_item"></string>
+    <!-- Daily Check-in -->
+    <string name="daily_check_in_title"></string>
+    <string name="daily_check_in_mood_label"></string>
+    <string name="daily_check_in_craving_label"></string>
+    <string name="daily_check_in_craving_value"></string>
+    <string name="daily_check_in_note_label"></string>
+    <string name="daily_check_in_pledge_label"></string>
+    <string name="daily_check_in_save_button"></string>
+    <!-- Motivation -->
+    <string name="motivation_title"></string>
+    <string name="motivation_empty"></string>
+    <string name="motivation_add_hint"></string>
+    <string name="motivation_add_button"></string>
+    <!-- Milestones -->
+    <string name="milestones_title"></string>
+    <string name="milestones_empty"></string>
+    <string name="milestones_days_required"></string>
+    <!-- Settings -->
+    <string name="settings_title"></string>
+    <string name="settings_daily_reminder"></string>
+    <string name="settings_reminder_time"></string>
+    <string name="settings_language"></string>
+    <string name="settings_app_version"></string>
+    <string name="settings_remote_config_title"></string>
+    <string name="settings_remote_config_button"></string>
+    <!-- Notifications -->
+    <string name="notification_channel_name"></string>
+    <string name="notification_channel_description"></string>
+    <string name="notification_daily_title"></string>
+    <string name="notification_daily_body"></string>
+    <string name="notification_push_default_title"></string>
+    <string name="home_empty_button"></string>
+    <string name="recovery_setup_title"></string>
+    <string name="recovery_setup_header"></string>
+    <string name="recovery_setup_description"></string>
+    <string name="recovery_setup_habit_name_label"></string>
+    <string name="recovery_setup_habit_name_placeholder"></string>
+    <string name="recovery_setup_daily_cost_label"></string>
+    <string name="recovery_setup_daily_cost_placeholder"></string>
+    <string name="recovery_setup_currency_label"></string>
+    <string name="recovery_setup_save_button"></string>
+    <string name="recovery_setup_error_name_required"></string>
+    <string name="recovery_setup_error_invalid_cost"></string>
+    <string name="home_relapse_history_title"></string>
+    <string name="home_relapse_count"></string>
+    <string name="home_last_relapse"></string>
+    <string name="home_last_relapse_empty"></string>
+    <string name="habits_title"></string>
+    <string name="habits_count"></string>
+    <string name="habits_empty"></string>
+    <string name="habits_create_new"></string>
+    <string name="habits_start_date"></string>
+    <string name="habits_active_label"></string>
+    <string name="habits_selected_message"></string>
+    <string name="home_go_to_habits"></string>
 </resources>

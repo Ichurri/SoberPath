@@ -10,10 +10,13 @@ import com.santiago.soberpath.domain.usecase.GetRelapsesUseCase
 import com.santiago.soberpath.domain.usecase.GetRemoteConfigUseCase
 import com.santiago.soberpath.domain.usecase.GetSobrietyProgressUseCase
 import com.santiago.soberpath.presentation.util.UiText
+import java.time.Duration
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -41,6 +44,7 @@ class HomeViewModel(
     private var progressJob: Job? = null
     private var checkInsJob: Job? = null
     private var relapsesJob: Job? = null
+    private var tickerJob: Job? = null
 
     init {
         observeHabit()
@@ -76,6 +80,9 @@ class HomeViewModel(
             HomeContract.UiIntent.SetupRecoveryClicked -> {
                 emitEffect(HomeContract.UiEffect.NavigateRecoverySetup)
             }
+            HomeContract.UiIntent.HabitsClicked -> {
+                emitEffect(HomeContract.UiEffect.NavigateHabits)
+            }
         }
     }
 
@@ -86,6 +93,7 @@ class HomeViewModel(
                     progressJob?.cancel()
                     checkInsJob?.cancel()
                     relapsesJob?.cancel()
+                    tickerJob?.cancel()
 
                     _state.update {
                         it.copy(
@@ -118,14 +126,39 @@ class HomeViewModel(
 
     private fun observeProgress(habit: Habit) {
         progressJob?.cancel()
+        tickerJob?.cancel()
 
         progressJob = viewModelScope.launch {
             getSobrietyProgressUseCase(habit.id).collectLatest { progress ->
-                _state.update {
-                    it.copy(
-                        timeSinceRelapse = formatDuration(progress),
-                        savingsText = formatSavings(habit.currency, progress)
-                    )
+                tickerJob?.cancel()
+                tickerJob = launch {
+                    while (true) {
+                        val now = LocalDateTime.now()
+                        val duration = if (now.isBefore(habit.lastRelapseDate)) {
+                            Duration.ZERO
+                        } else {
+                            Duration.between(habit.lastRelapseDate, now)
+                        }
+
+                        val totalSeconds = duration.seconds
+                        val days = totalSeconds / (24 * 3600)
+                        val hours = (totalSeconds % (24 * 3600)) / 3600
+                        val minutes = (totalSeconds % 3600) / 60
+                        val seconds = totalSeconds % 60
+
+                        val timeStr = "${days}d ${hours}h ${minutes}m ${seconds}s"
+                        val saved = days * habit.dailyCost
+                        val formattedSavings = String.format(Locale.getDefault(), "%.2f", saved)
+                        val savingsStr = "${habit.currency}$formattedSavings"
+
+                        _state.update {
+                            it.copy(
+                                timeSinceRelapse = timeStr,
+                                savingsText = savingsStr
+                            )
+                        }
+                        delay(1000)
+                    }
                 }
             }
         }
