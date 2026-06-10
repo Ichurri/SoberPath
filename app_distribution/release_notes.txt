@@ -1,3 +1,13 @@
-- Build interna para pruebas de App Distribution.
-- Incluye configuracion base, Remote Config y notificaciones.
+SoberPath v1.0 (build 1) - Build interna para testers
 
+Novedades de esta build:
+- App bilingue Espanol/Ingles con selector de idioma unificado (onboarding + ajustes).
+- Configuracion inicial de recuperacion, contador de sobriedad y ahorro estimado.
+- Check-in diario, registro e historial de recaidas, logros y motivaciones.
+- Recordatorios locales y mensajes dinamicos via Firebase Remote Config.
+
+Que probar:
+1. Completar el onboarding y elegir idioma.
+2. Crear un seguimiento y revisar el contador en Inicio.
+3. Hacer un check-in diario y registrar una recaida de prueba.
+4. Cambiar el idioma en Ajustes y verificar que toda la app cambie.

@@ -6,9 +6,8 @@ import com.santiago.soberpath.R
 import com.santiago.soberpath.domain.usecase.GetAllHabitsUseCase
 import com.santiago.soberpath.domain.usecase.SetActiveHabitUseCase
 import com.santiago.soberpath.domain.usecase.DeleteHabitUseCase
+import com.santiago.soberpath.presentation.util.DateFormatters
 import com.santiago.soberpath.presentation.util.UiText
-import java.time.format.DateTimeFormatter
-import java.util.Locale
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -57,17 +56,12 @@ class HabitListViewModel(
     private fun observeHabits() {
         viewModelScope.launch {
             getAllHabitsUseCase().collectLatest { habits ->
-                val formatter = DateTimeFormatter.ofPattern(
-                    "dd MMM yyyy",
-                    Locale.getDefault()
-                )
-
                 val items = habits.map { habit ->
                     HabitListContract.HabitUi(
                         id = habit.id,
                         name = habit.name,
                         category = habit.category,
-                        startDate = habit.startDate.format(formatter),
+                        startDate = DateFormatters.mediumDate(habit.startDate),
                         isActive = habit.isActive
                     )
                 }

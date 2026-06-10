@@ -342,13 +342,13 @@ private fun CravingLevelSection(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = "1",
+                    text = stringResource(R.string.craving_scale_min),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f)
                 )
 
                 Text(
-                    text = "5",
+                    text = stringResource(R.string.craving_scale_max),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.55f)
                 )

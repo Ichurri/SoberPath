@@ -9,11 +9,11 @@ import com.santiago.soberpath.domain.usecase.GetDailyCheckInsUseCase
 import com.santiago.soberpath.domain.usecase.GetRelapsesUseCase
 import com.santiago.soberpath.domain.usecase.GetRemoteConfigUseCase
 import com.santiago.soberpath.domain.usecase.GetSobrietyProgressUseCase
+import com.santiago.soberpath.presentation.util.DateFormatters
 import com.santiago.soberpath.presentation.util.UiText
 import java.time.Duration
 import java.time.LocalDate
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.Locale
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -212,10 +212,7 @@ class HomeViewModel(
         return "$currency$formatted"
     }
 
-    private fun formatDate(date: LocalDate): String {
-        val formatter = DateTimeFormatter.ofPattern("dd MMM yyyy", Locale.getDefault())
-        return date.format(formatter)
-    }
+    private fun formatDate(date: LocalDate): String = DateFormatters.mediumDate(date)
 
     private fun emitEffect(effect: HomeContract.UiEffect) {
         viewModelScope.launch {

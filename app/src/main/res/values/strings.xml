@@ -69,7 +69,7 @@
     <string name="settings_title">Ajustes</string>
     <string name="settings_daily_reminder">Recordatorio diario</string>
     <string name="settings_reminder_time">Hora del recordatorio</string>
-    <string name="settings_language">Idioma (segun el sistema)</string>
+    <string name="settings_language">Idioma</string>
     <string name="settings_app_version">Version de la app: %1$s</string>
     <string name="settings_remote_config_title">Remote config (debug)</string>
     <string name="settings_remote_config_button">Actualizar remote config</string>
@@ -132,7 +132,7 @@
     <string name="settings_time_picker_title">Hora del recordatorio</string>
     <string name="settings_time_picker_subtitle">Toca para cambiar la hora</string>
     <string name="settings_app_language_title">Idioma de la aplicación</string>
-    <string name="settings_app_language_description">Configurado automáticamente según el sistema de tu dispositivo.</string>
+    <string name="settings_app_language_description">Elige el idioma de la aplicación. Se aplicará en toda la app.</string>
     <string name="settings_debug_options_title">Opciones de Desarrollador (Debug)</string>
     <string name="settings_debug_options_desc">Prueba y sincroniza configuraciones dinámicas desde Firebase.</string>
 
@@ -167,4 +167,21 @@
     <string name="settings_daily_reminder_desc">Recibe una alerta diaria para realizar tu check-in y registrar tu sobriedad.</string>
     <string name="settings_reminder_disabled_note">Activa el interruptor para programar la hora de tu recordatorio diario.</string>
     <string name="settings_reminder_time_scheduled">Programado a las %1$s</string>
+
+    <!-- Selector de idioma (nombres en su propio idioma) -->
+    <string name="language_es">Español</string>
+    <string name="language_en">English</string>
+    <!-- Escala de tentación / ansiedad -->
+    <string name="craving_scale_min">1</string>
+    <string name="craving_scale_max">5</string>
+    <!-- Acciones genéricas -->
+    <string name="action_ok">Aceptar</string>
+    <string name="action_cancel">Cancelar</string>
+    <!-- Home: contador de sobriedad -->
+    <string name="home_free_day_one">DÍA LIBRE</string>
+    <string name="home_free_day_other">DÍAS LIBRES</string>
+    <string name="home_time_format">%1$sh %2$sm %3$ss</string>
+    <string name="home_next_milestone">Meta: %1$dd</string>
+    <!-- Accesibilidad -->
+    <string name="cd_app_logo">Logo de SoberPath</string>
 </resources>

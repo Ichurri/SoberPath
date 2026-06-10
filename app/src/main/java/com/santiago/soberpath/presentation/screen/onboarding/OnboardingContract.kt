@@ -32,7 +32,6 @@ object OnboardingContract {
         data object Next : UiIntent
         data object Skip : UiIntent
         data object Start : UiIntent
-        data class ChangeLanguage(val language: String) : UiIntent
     }
 
     sealed interface UiEffect {

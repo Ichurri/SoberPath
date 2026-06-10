@@ -18,11 +18,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.santiago.soberpath.R
+import com.santiago.soberpath.presentation.util.DateFormatters
 import com.santiago.soberpath.presentation.util.asString
 import org.koin.androidx.compose.koinViewModel
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.*
 import kotlin.math.roundToInt
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -61,12 +60,12 @@ fun RelapseScreen(
                     }
                     showDatePicker = false
                 }) {
-                    Text("OK")
+                    Text(stringResource(R.string.action_ok))
                 }
             },
             dismissButton = {
                 TextButton(onClick = { showDatePicker = false }) {
-                    Text("Cancel")
+                    Text(stringResource(R.string.action_cancel))
                 }
             }
         ) {
@@ -216,7 +215,7 @@ private fun RelapseFormCard(
                 ) {
                     Text(text = stringResource(R.string.relapse_date_label))
                     Text(
-                        text = date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                        text = DateFormatters.shortDate(date),
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.primary
                     )

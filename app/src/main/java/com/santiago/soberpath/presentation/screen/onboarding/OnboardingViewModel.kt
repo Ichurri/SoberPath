@@ -44,7 +44,6 @@ class OnboardingViewModel(
             OnboardingContract.UiIntent.Next -> nextSlide()
             OnboardingContract.UiIntent.Skip -> skipOnboarding()
             OnboardingContract.UiIntent.Start -> completeOnboarding()
-            is OnboardingContract.UiIntent.ChangeLanguage -> changeLanguage(intent.language)
         }
     }
 
@@ -70,11 +69,6 @@ class OnboardingViewModel(
                 }
             }
         }
-    }
-
-    private fun changeLanguage(language: String) {
-        _state.update { it.copy(currentLanguage = language) }
-        loadOnboardingFromRemoteConfig(language)
     }
 
     private fun previousSlide() {
@@ -122,7 +116,6 @@ class OnboardingViewModel(
     private fun getDeviceLanguage(): String {
         return when (Locale.getDefault().language.lowercase(Locale.ROOT)) {
             "en" -> "en"
-            "fr" -> "fr"
             else -> "es"
         }
     }

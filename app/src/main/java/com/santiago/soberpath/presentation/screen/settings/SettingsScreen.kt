@@ -384,10 +384,10 @@ private fun LanguageSettingsCard(
 ) {
     var dropdownExpanded by remember { mutableStateOf(false) }
     val languages = mapOf(
-        "es" to "Español",
-        "en" to "English"
+        "es" to stringResource(R.string.language_es),
+        "en" to stringResource(R.string.language_en)
     )
-    val currentLanguageName = languages[currentLanguage] ?: "Español"
+    val currentLanguageName = languages[currentLanguage] ?: stringResource(R.string.language_es)
 
     Card(
         modifier = Modifier

@@ -305,7 +305,7 @@ private fun HomeHeader(
     ) {
         Column {
             Text(
-                text = "SoberPath",
+                text = stringResource(R.string.app_name),
                 style = MaterialTheme.typography.headlineMedium.copy(
                     fontWeight = FontWeight.Bold
                 ),
@@ -417,21 +417,30 @@ fun SoberCircularProgress(
                 color = MaterialTheme.colorScheme.primary
             )
             Text(
-                text = if (daysInt == 1) "DÍA LIBRE" else "DÍAS LIBRES",
+                text = if (daysInt == 1) {
+                    stringResource(R.string.home_free_day_one)
+                } else {
+                    stringResource(R.string.home_free_day_other)
+                },
                 style = MaterialTheme.typography.labelSmall,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
-                text = "${hoursText}h ${minutesText}m ${secondsText}s",
+                text = stringResource(
+                    R.string.home_time_format,
+                    hoursText,
+                    minutesText,
+                    secondsText
+                ),
                 style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.SemiBold,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.75f)
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
-                text = "Meta: ${nextMilestone}d",
+                text = stringResource(R.string.home_next_milestone, nextMilestone),
                 style = MaterialTheme.typography.labelSmall,
                 color = MaterialTheme.colorScheme.primary,
                 fontWeight = FontWeight.Bold

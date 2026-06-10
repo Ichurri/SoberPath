@@ -19,8 +19,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.santiago.soberpath.R
 import com.santiago.soberpath.domain.model.Relapse
+import com.santiago.soberpath.presentation.util.DateFormatters
 import org.koin.androidx.compose.koinViewModel
-import java.time.format.DateTimeFormatter
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -85,12 +85,12 @@ fun RelapseItem(relapse: Relapse) {
         Column(modifier = Modifier.padding(16.dp)) {
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
                 Text(
-                    text = relapse.relapseDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy")),
+                    text = DateFormatters.mediumDate(relapse.relapseDate),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "Level ${relapse.cravingLevel}",
+                    text = stringResource(R.string.relapse_history_item_craving, relapse.cravingLevel),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.primary
                 )
@@ -98,7 +98,7 @@ fun RelapseItem(relapse: Relapse) {
             if (relapse.trigger.isNotBlank()) {
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "Trigger: ${relapse.trigger}",
+                    text = stringResource(R.string.relapse_history_item_trigger, relapse.trigger),
                     style = MaterialTheme.typography.bodyMedium
                 )
             }

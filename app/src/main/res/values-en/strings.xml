@@ -69,7 +69,7 @@
     <string name="settings_title">Settings</string>
     <string name="settings_daily_reminder">Daily reminder</string>
     <string name="settings_reminder_time">Reminder time</string>
-    <string name="settings_language">Language (managed by system)</string>
+    <string name="settings_language">Language</string>
     <string name="settings_app_version">App version: %1$s</string>
     <string name="settings_remote_config_title">Remote config (debug)</string>
     <string name="settings_remote_config_button">Refresh remote config</string>
@@ -132,7 +132,7 @@
     <string name="settings_time_picker_title">Reminder time</string>
     <string name="settings_time_picker_subtitle">Tap to change time</string>
     <string name="settings_app_language_title">Application language</string>
-    <string name="settings_app_language_description">Automatically configured based on your device system settings.</string>
+    <string name="settings_app_language_description">Choose the application language. It will be applied across the whole app.</string>
     <string name="settings_debug_options_title">Developer Options (Debug)</string>
     <string name="settings_debug_options_desc">Test and sync dynamic configurations from Firebase.</string>
 
@@ -167,4 +167,21 @@
     <string name="relapse_save_button">Confirm relapse</string>
     <string name="relapse_history_title">Relapse history</string>
     <string name="relapse_history_empty">No history available.</string>
+
+    <!-- Language selector (names in their own language) -->
+    <string name="language_es">Español</string>
+    <string name="language_en">English</string>
+    <!-- Craving / temptation scale -->
+    <string name="craving_scale_min">1</string>
+    <string name="craving_scale_max">5</string>
+    <!-- Generic actions -->
+    <string name="action_ok">OK</string>
+    <string name="action_cancel">Cancel</string>
+    <!-- Home: sobriety counter -->
+    <string name="home_free_day_one">FREE DAY</string>
+    <string name="home_free_day_other">FREE DAYS</string>
+    <string name="home_time_format">%1$sh %2$sm %3$ss</string>
+    <string name="home_next_milestone">Goal: %1$dd</string>
+    <!-- Accessibility -->
+    <string name="cd_app_logo">SoberPath logo</string>
 </resources>

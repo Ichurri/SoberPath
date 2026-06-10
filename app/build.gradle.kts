@@ -86,7 +86,9 @@ dependencies {
     implementation(libs.androidx.work.runtime.ktx)
     implementation(libs.androidx.datastore.preferences)
     testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
@@ -106,8 +108,7 @@ tasks.register("pullTranslations") {
 
         val locales = mapOf(
             "es" to file("src/main/res/values/strings.xml"),
-            "en" to file("src/main/res/values-en/strings.xml"),
-            "fr" to file("src/main/res/values-fr/strings.xml")
+            "en" to file("src/main/res/values-en/strings.xml")
         )
 
         locales.forEach { (locale, targetFile) ->

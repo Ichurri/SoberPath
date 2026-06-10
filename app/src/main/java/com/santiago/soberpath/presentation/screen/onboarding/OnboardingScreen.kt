@@ -54,6 +54,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.santiago.soberpath.R
 import com.santiago.soberpath.presentation.util.asString
+import com.santiago.soberpath.util.LocaleHelper
 import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -111,22 +112,20 @@ fun OnboardingScreen(
                             }
                         ) {
                             DropdownMenuItem(
-                                text = { Text("Español") },
+                                text = { Text(stringResource(R.string.language_es)) },
                                 onClick = {
-                                    viewModel.onIntent(
-                                        OnboardingContract.UiIntent.ChangeLanguage("es")
-                                    )
                                     showLanguageMenu = false
+                                    LocaleHelper.setLanguage(context, "es")
+                                    (context as? android.app.Activity)?.recreate()
                                 }
                             )
 
                             DropdownMenuItem(
-                                text = { Text("English") },
+                                text = { Text(stringResource(R.string.language_en)) },
                                 onClick = {
-                                    viewModel.onIntent(
-                                        OnboardingContract.UiIntent.ChangeLanguage("en")
-                                    )
                                     showLanguageMenu = false
+                                    LocaleHelper.setLanguage(context, "en")
+                                    (context as? android.app.Activity)?.recreate()
                                 }
                             )
                         }
